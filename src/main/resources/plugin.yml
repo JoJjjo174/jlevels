@@ -1,0 +1,9 @@
+name: jLevels
+version: '1.0-SNAPSHOT'
+main: me.jojjjo147.jLevels.JLevels
+api-version: '1.21'
+commands:
+  level:
+    usage: /<command>
+    description: See your level
+    permission: jlevels.level
