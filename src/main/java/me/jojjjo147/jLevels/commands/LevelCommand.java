@@ -23,16 +23,27 @@ public class LevelCommand implements CommandExecutor {
 
         if (commandSender instanceof Player p) {
 
-            PersistentDataContainer data = p.getPersistentDataContainer();
+            String message = plugin.getConfig().getString("lang.message-level");
+            message = applyPlaceholders(p, message);
 
-            int level = data.get(new NamespacedKey(plugin, "level"), PersistentDataType.INTEGER);
-
-            p.sendMessage(ChatColor.GRAY + "Yout current level is: " + ChatColor.LIGHT_PURPLE + level);
+            p.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
 
         } else {
-           plugin.getLogger().info("This command can only be executed by a player!");
+           plugin.getLogger().info(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.command-not-player")));
         }
 
         return true;
     }
+
+    public String applyPlaceholders(Player player, String text) {
+
+        PersistentDataContainer data = player.getPersistentDataContainer();
+        int level = data.get(new NamespacedKey(plugin, "level"), PersistentDataType.INTEGER);
+
+        text = text.replace("%player%", player.getDisplayName());
+        text = text.replace("%level%", String.valueOf(level));
+
+        return text;
+    }
+
 }

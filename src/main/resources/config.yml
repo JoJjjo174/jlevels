@@ -1,0 +1,5 @@
+# ----------------- Language -----------------
+lang:
+  command-not-player: "This command can only be executed by a player!"
+  message-level: "&7Your level is: &d%level%"                                       # Available Placeholders: %player% %level%
+# --------------------------------------------

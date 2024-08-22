@@ -9,7 +9,10 @@ public final class JLevels extends JavaPlugin {
     @Override
     public void onEnable() {
 
+        saveDefaultConfig();
+
         getServer().getPluginManager().registerEvents(new JoinListener(this), this);
+
         getCommand("level").setExecutor(new LevelCommand(this));
 
     }
