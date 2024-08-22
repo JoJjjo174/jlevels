@@ -1,5 +1,8 @@
 package me.jojjjo147.jLevels.commands;
 
+import net.objecthunter.exp4j.Expression;
+import net.objecthunter.exp4j.ExpressionBuilder;
+
 import me.jojjjo147.jLevels.JLevels;
 import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
@@ -40,8 +43,16 @@ public class LevelCommand implements CommandExecutor {
         PersistentDataContainer data = player.getPersistentDataContainer();
         int level = data.get(new NamespacedKey(plugin, "level"), PersistentDataType.INTEGER);
 
+        Expression expression = new ExpressionBuilder(plugin.getConfig().getString("xp-formula"))
+                .variables("x")
+                .build()
+                .setVariable("x", level);
+
+        int required_xp = (int)expression.evaluate();
+
         text = text.replace("%player%", player.getDisplayName());
         text = text.replace("%level%", String.valueOf(level));
+        text = text.replace("%required_xp%", String.valueOf(required_xp));
 
         return text;
     }
