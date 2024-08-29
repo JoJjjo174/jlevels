@@ -1,5 +1,6 @@
 package me.jojjjo147.jLevels;
 
+import me.jojjjo147.jLevels.commands.AddXPCommand;
 import me.jojjjo147.jLevels.commands.LevelCommand;
 import me.jojjjo147.jLevels.listeners.JoinListener;
 import me.jojjjo147.jLevels.listeners.MobKillListener;
@@ -16,6 +17,7 @@ public final class JLevels extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new MobKillListener(this, new XPManager(this)), this);
 
         getCommand("level").setExecutor(new LevelCommand(this));
+        getCommand("addxp").setExecutor(new AddXPCommand(this, new XPManager(this)));
 
     }
 
