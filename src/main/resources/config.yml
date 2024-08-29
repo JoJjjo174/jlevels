@@ -3,6 +3,7 @@
 lang:
   command-not-player: "This command can only be executed by a player!"
   message-level: "&7Your level is: &d%level%&7\nProgress to next level: &d%xp%/%required_xp%"         # Available Placeholders: %player% %level%
+  message-levelup: "&7Level up!"
 
 # --------------------------------------------
 

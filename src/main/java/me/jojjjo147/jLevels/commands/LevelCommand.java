@@ -42,6 +42,7 @@ public class LevelCommand implements CommandExecutor {
 
         PersistentDataContainer data = player.getPersistentDataContainer();
         int level = data.get(new NamespacedKey(plugin, "level"), PersistentDataType.INTEGER);
+        int xp = data.get(new NamespacedKey(plugin, "xp"), PersistentDataType.INTEGER);
 
         Expression expression = new ExpressionBuilder(plugin.getConfig().getString("xp-formula"))
                 .variables("x")
@@ -53,6 +54,7 @@ public class LevelCommand implements CommandExecutor {
         text = text.replace("%player%", player.getDisplayName());
         text = text.replace("%level%", String.valueOf(level));
         text = text.replace("%required_xp%", String.valueOf(required_xp));
+        text = text.replace("%xp%", String.valueOf(xp));
 
         return text;
     }
