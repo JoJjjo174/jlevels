@@ -33,12 +33,24 @@ public class MobKillListener implements Listener {
 
         if (e.getEntity().getKiller() instanceof Player p && e.getEntity() instanceof Monster) {
 
-            p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText("+10XP (Monster killed)"));
+            int xpAmount = plugin.getConfig().getInt("rewards.monster-kill");
 
-            xpmg.addXP(p, 10);
+            if (xpAmount > 0) {
+                p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.translateAlternateColorCodes('&', applyPlaceholders(xpAmount, "Monster Killed", plugin.getConfig().getString("lang.actionbar-gained-xp")))));
+
+                xpmg.addXP(p, xpAmount);
+            }
 
         }
 
+    }
+
+    public String applyPlaceholders(int xp, String reason, String text) {
+
+        text = text.replace("%xp%", String.valueOf(xp));
+        text = text.replace("%reason%", reason);
+
+        return text;
     }
 
 }

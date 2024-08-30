@@ -34,16 +34,18 @@ public class AddXPCommand implements CommandExecutor {
 
                         xpmg.addXP(target, xpAmount);
 
+                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.message-add-xp")));
+
                     } else {
-                        p.sendMessage(ChatColor.RED + "invalid player!");
+                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.message-invalid-player")));
                     }
 
                 } catch (Exception e) {
-                    p.sendMessage(ChatColor.RED + "Please specify a number!");
+                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.message-xp-number")));
                 }
 
             } else {
-                p.sendMessage(ChatColor.RED + "missing arguments!");
+                p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.message-missing-arguments")));
             }
         } else {
             plugin.getLogger().info(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.command-not-player")));
