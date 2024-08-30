@@ -11,3 +11,10 @@ commands:
     usage: /<command> <player> <xp>
     description: give someone xp
     permission: jlevels.addxp
+permissions:
+  jlevels.level:
+    description: Alles to run the /level command
+    default: true
+  jlevels.addxp:
+    description: Give XP to someone
+    default: op

@@ -33,14 +33,20 @@ public class XPManager {
 
         if (required_xp <= xp) {
 
-            level++;
-            xp -= required_xp;
+            while (required_xp <= xp) {
+                level++;
+                xp -= required_xp;
+
+                p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.message-levelup")));
+
+                expression.setVariable("x", level);
+                required_xp = (int)expression.evaluate();
+            }
+
+            p.playSound(p, Sound.UI_TOAST_CHALLENGE_COMPLETE, 1, 1);
 
             data.set(new NamespacedKey(plugin, "xp"), PersistentDataType.INTEGER, xp);
             data.set(new NamespacedKey(plugin, "level"), PersistentDataType.INTEGER, level);
-
-            p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.message-levelup")));
-            p.playSound(p, Sound.UI_TOAST_CHALLENGE_COMPLETE, 1, 1);
 
         } else {
             data.set(new NamespacedKey(plugin, "xp"), PersistentDataType.INTEGER, xp);
