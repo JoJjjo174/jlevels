@@ -9,6 +9,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class XPManager {
 
     private final JLevels plugin;
@@ -37,7 +40,13 @@ public class XPManager {
                 level++;
                 xp -= required_xp;
 
-                p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.message-levelup")));
+                List<String> rewards = Arrays.asList("&7No rewards");
+
+                if (plugin.getConfig().contains("level-rewards." + level)) {
+                    rewards = plugin.getConfig().getStringList("level-rewards." + level + ".text");
+                }
+
+                p.sendMessage(ChatColor.translateAlternateColorCodes('&', applyPlaceholders(level, rewards, plugin.getConfig().getString("lang.message-levelup"))));
 
                 expression.setVariable("x", level);
                 required_xp = (int)expression.evaluate();
@@ -52,5 +61,22 @@ public class XPManager {
             data.set(new NamespacedKey(plugin, "xp"), PersistentDataType.INTEGER, xp);
         }
 
+    }
+
+    public String applyPlaceholders(int level, List<String> rewards, String text) {
+
+        String rewardString = "";
+
+        for (String reward : rewards) {
+            rewardString += "   &e-&r " + reward + "\n";
+        }
+
+        rewardString = rewardString.stripTrailing();
+        rewardString += "&r";
+
+        text = text.replace("%level%", String.valueOf(level));
+        text = text.replace("%rewards%", rewardString);
+
+        return text;
     }
 }
