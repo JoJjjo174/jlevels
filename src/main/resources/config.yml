@@ -3,7 +3,7 @@
 lang:
   command-not-player: "This command can only be executed by a player!"
   message-level: "&7Your level is: &d%level%&7\nProgress to next level: &d%xp%/%required_xp%"         # Available Placeholders: %player% %level% %xp% %required_xp%
-  message-levelup: "&4&l-----&r &kx&r &bLevel Up! &r&kx&r &4&l-----&r\n&7You are now Level &d%level%&7\nRewards:\n%rewards%\n&4&l-----&r &kx&r &bLevel Up! &r&kx&r &4&l-----&r"
+  message-levelup: "&4&l-----&r &kx&r &bLevel Up! &r&kx&r &4&l-----&r\n&7You are now Level &d%level%&7\nRewards:\n%rewards%\n&4&l-----&r &kx&r &bLevel Up! &r&kx&r &4&l-----&r"   # Available Placeholders: %level% %rewards%
   message-invalid-player: "&cInvalid player!"
   message-xp-number: "&cPlease specify xp as a number!"
   message-missing-arguments: "&cMissing arguments!"
@@ -21,7 +21,7 @@ rewards:
 
 level-rewards:
   1:
-    commands:
+    commands:     # Available Placeholders: %player%
       - "give %player% diamond 1"
       - "give %player% dirt 64"
     text:

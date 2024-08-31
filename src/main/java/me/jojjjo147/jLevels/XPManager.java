@@ -2,9 +2,11 @@ package me.jojjjo147.jLevels;
 
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
@@ -47,6 +49,13 @@ public class XPManager {
                 }
 
                 p.sendMessage(ChatColor.translateAlternateColorCodes('&', applyPlaceholders(level, rewards, plugin.getConfig().getString("lang.message-levelup"))));
+
+                ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
+
+                for (String command : plugin.getConfig().getStringList("level-rewards." + level + ".commands")) {
+                    command = command.replace("%player%", p.getDisplayName());
+                    Bukkit.dispatchCommand(console, command);
+                }
 
                 expression.setVariable("x", level);
                 required_xp = (int)expression.evaluate();
