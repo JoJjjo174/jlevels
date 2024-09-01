@@ -1,8 +1,10 @@
 package me.jojjjo147.jLevels.listeners;
 
 import me.jojjjo147.jLevels.JLevels;
+import me.jojjjo147.jLevels.XPManager;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
@@ -10,13 +12,16 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
+import org.checkerframework.checker.units.qual.N;
 
 public class XpBottleListener implements Listener {
 
     private final JLevels plugin;
+    private final XPManager xpmg;
 
-    public XpBottleListener(JLevels plugin) {
+    public XpBottleListener(JLevels plugin, XPManager xpmg) {
         this.plugin = plugin;
+        this.xpmg = xpmg;
     }
 
     @EventHandler
@@ -33,6 +38,13 @@ public class XpBottleListener implements Listener {
                 if (data.has(new NamespacedKey(plugin, "jxp"), PersistentDataType.INTEGER)) {
 
                     e.setCancelled(true);
+
+                    int xpAmount = data.get(new NamespacedKey(plugin, "jxp"), PersistentDataType.INTEGER);
+
+                    Player p = e.getPlayer();
+                    item.setAmount(item.getAmount() - 1);
+
+                    xpmg.addXP(p, xpAmount, "XP Bottle");
 
                 }
 

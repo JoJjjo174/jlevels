@@ -16,10 +16,10 @@ public final class JLevels extends JavaPlugin {
 
         saveDefaultConfig();
 
-        getServer().getPluginManager().registerEvents(new JoinListener(this), this);
-        getServer().getPluginManager().registerEvents(new XpBottleListener(this), this);
-
         XPManager xpmg = new XPManager(this);
+
+        getServer().getPluginManager().registerEvents(new JoinListener(this), this);
+        getServer().getPluginManager().registerEvents(new XpBottleListener(this, xpmg), this);
 
         if (getConfig().getInt("rewards.monster-kill") > 0) {
             getServer().getPluginManager().registerEvents(new MobKillListener(this, xpmg), this);
