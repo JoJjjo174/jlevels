@@ -2,22 +2,26 @@
 
 lang:
   command-not-player: "This command can only be executed by a player!"
-  message-level: "&7Your level is: &d%level%&7\nProgress to next level: &d%xp%/%required_xp%"         # Available Placeholders: %player% %level% %xp% %required_xp%
-  message-levelup: "&4&l-----&r &kx&r &bLevel Up! &r&kx&r &4&l-----&r\n&7You are now Level &d%level%&7\nRewards:\n%rewards%\n&4&l-----&r &kx&r &bLevel Up! &r&kx&r &4&l-----&r"   # Available Placeholders: %level% %rewards%
+  message-level: "&7Your level is: &d%level%&7\nProgress to next level: &d%xp%/%required_xp%" # Available Placeholders: %player% %level% %xp% %required_xp%
+  message-levelup: "&4&l-----&r &kx&r &bLevel Up! &r&kx&r &4&l-----&r\n&7You are now Level &d%level%&7\nRewards:\n%rewards%\n&4&l-----&r &kx&r &bLevel Up! &r&kx&r &4&l-----&r" # Available Placeholders: %level% %rewards%
   message-invalid-player: "&cInvalid player!"
   message-xp-number: "&cPlease specify xp as a number!"
   message-missing-arguments: "&cMissing arguments!"
   message-add-xp: "&asuccessfully added xp to player"
-  actionbar-gained-xp: "&b&l+%xp%XP &7&o(%reason%)"       # Available Placeholders: %xp% %reason%
+  message-xpbottle-given: "&aAddded XP Bottle(s) to your inventory"
+  actionbar-gained-xp: "&b&l+%xp%XP &7&o(%reason%)" # Available Placeholders: %xp% %reason%
   xpreason-moster-killed: "Monster Killed"
   xpreason-admin: "Given by Admin"
   xpreason-achievement: "Achievement"
+  xpreason-xpbottle: "XP Bottle"
+  name-xpbottle: "&b%xp%XP" # Available Placeholders: %xp%
+  lore-xpbottle: "&7right click to get &b%xp%XP"  # Available Placeholders: %xp%
 
 # --------------------------------------------
 
 # ----------------- Settings -----------------
 
-xp-formula: "100 + x^1.8"         # x is the current level of the player
+xp-formula: "100 + x^1.8" # x is the current level of the player
 
 rewards:
   monster-kill: 2
@@ -25,7 +29,7 @@ rewards:
 
 level-rewards:
   1:
-    commands:     # Available Placeholders: %player%
+    commands: # Available Placeholders: %player%
       - "give %player% diamond 1"
       - "give %player% dirt 64"
     text:

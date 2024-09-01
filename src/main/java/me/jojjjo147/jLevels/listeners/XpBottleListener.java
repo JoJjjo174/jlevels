@@ -44,7 +44,7 @@ public class XpBottleListener implements Listener {
                     Player p = e.getPlayer();
                     item.setAmount(item.getAmount() - 1);
 
-                    xpmg.addXP(p, xpAmount, "XP Bottle");
+                    xpmg.addXP(p, xpAmount, plugin.getConfig().getString("lang.xpreason-xpbottle"));
 
                 }
 

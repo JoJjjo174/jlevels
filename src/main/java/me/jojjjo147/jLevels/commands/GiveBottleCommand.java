@@ -38,9 +38,9 @@ public class GiveBottleCommand implements CommandExecutor {
                 try {
                     data.set(new NamespacedKey(plugin, "jxp"), PersistentDataType.INTEGER, Integer.valueOf(args[0]));
 
-                    meta.setDisplayName(ChatColor.AQUA + args[0] + "XP");
+                    meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.name-xpbottle").replace("%xp%", args[0])));
                     meta.setLore(Arrays.asList(
-                            ChatColor.GRAY + "right click to get " + ChatColor.AQUA + args[0] + "XP"
+                            ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.lore-xpbottle").replace("%xp%", args[0]))
                     ));
 
                     item.setItemMeta(meta);
@@ -48,7 +48,7 @@ public class GiveBottleCommand implements CommandExecutor {
 
                     p.getInventory().addItem(item);
 
-                    p.sendMessage(ChatColor.GREEN + "Addded XP Bottle(s) to your inventory");
+                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.message-xpbottle-given")));
 
                 } catch (NumberFormatException e) {
                     p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.message-xp-number")));
