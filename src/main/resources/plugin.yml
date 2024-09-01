@@ -1,5 +1,5 @@
 name: jLevels
-version: '1.0-SNAPSHOT'
+version: '0.1'
 main: me.jojjjo147.jLevels.JLevels
 api-version: '1.21'
 commands:
