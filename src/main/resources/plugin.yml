@@ -8,13 +8,16 @@ commands:
     description: See your level
     permission: jlevels.level
   addxp:
-    usage: /<command> <player> <xp>
+    usage: /<command> <player> <xp> [message]
     description: give someone xp
+    permission: jlevels.addxp
+  givexpbottle:
+    usage: /<command> <xp>
     permission: jlevels.addxp
 permissions:
   jlevels.level:
     description: Alles to run the /level command
     default: true
   jlevels.addxp:
-    description: Give XP to someone
+    description: Give and create XP bottles
     default: op

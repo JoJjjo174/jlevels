@@ -56,7 +56,7 @@ public class AddXPCommand implements CommandExecutor {
                         p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.message-invalid-player")));
                     }
 
-                } catch (Exception e) {
+                } catch (NumberFormatException e) {
                     p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.message-xp-number")));
                 }
 
