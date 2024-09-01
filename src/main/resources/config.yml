@@ -9,6 +9,9 @@ lang:
   message-missing-arguments: "&cMissing arguments!"
   message-add-xp: "&asuccessfully added xp to player"
   actionbar-gained-xp: "&b&l+%xp%XP &7&o(%reason%)"       # Available Placeholders: %xp% %reason%
+  xpreason-moster-killed: "Monster Killed"
+  xpreason-admin: "Given by Admin"
+  xpreason-achievement: "Achievement"
 
 # --------------------------------------------
 
@@ -17,7 +20,8 @@ lang:
 xp-formula: "100 + x^1.8"         # x is the current level of the player
 
 rewards:
-  monster-kill: 10
+  monster-kill: 2
+  achievement: 10
 
 level-rewards:
   1:

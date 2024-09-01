@@ -1,5 +1,7 @@
 package me.jojjjo147.jLevels;
 
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
 import org.bukkit.Bukkit;
@@ -21,7 +23,9 @@ public class XPManager {
     public XPManager(JLevels plugin) {
         this.plugin = plugin;
     }
-    public void addXP(Player p, int addXpAmount) {
+    public void addXP(Player p, int addXpAmount, String reason) {
+
+        sendActionbar(p, addXpAmount, reason);
 
         PersistentDataContainer data = p.getPersistentDataContainer();
 
@@ -70,6 +74,18 @@ public class XPManager {
             data.set(new NamespacedKey(plugin, "xp"), PersistentDataType.INTEGER, xp);
         }
 
+    }
+
+    public void sendActionbar(Player p, int amount, String reason) {
+        p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.translateAlternateColorCodes('&', applyActionbarPlaceholders(amount, reason, plugin.getConfig().getString("lang.actionbar-gained-xp")))));
+    }
+
+    public String applyActionbarPlaceholders(int xp, String reason, String text) {
+
+        text = text.replace("%xp%", String.valueOf(xp));
+        text = text.replace("%reason%", reason);
+
+        return text;
     }
 
     public String applyPlaceholders(int level, List<String> rewards, String text) {

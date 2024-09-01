@@ -32,7 +32,23 @@ public class AddXPCommand implements CommandExecutor {
 
                     if (target != null) {
 
-                        xpmg.addXP(target, xpAmount);
+                        String xpReason = "";
+
+                        if (args.length > 2) {
+
+                            for (int i = 2; i < args.length; i++) {
+
+                                xpReason += args[i] + " ";
+                            }
+
+                            xpReason = xpReason.substring(0, xpReason.length() - 1);
+
+                        } else {
+                            xpReason = plugin.getConfig().getString("lang.xpreason-admin");
+
+                        }
+
+                        xpmg.addXP(target, xpAmount, xpReason);
 
                         p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.message-add-xp")));
 
