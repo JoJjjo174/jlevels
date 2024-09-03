@@ -7,6 +7,7 @@ import me.jojjjo147.jLevels.listeners.AchievementListener;
 import me.jojjjo147.jLevels.listeners.JoinListener;
 import me.jojjjo147.jLevels.listeners.MobKillListener;
 import me.jojjjo147.jLevels.listeners.XpBottleListener;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class JLevels extends JavaPlugin {
@@ -32,6 +33,10 @@ public final class JLevels extends JavaPlugin {
         getCommand("level").setExecutor(new LevelCommand(this));
         getCommand("addxp").setExecutor(new AddXPCommand(this, new XPManager(this)));
         getCommand("givexpbottle").setExecutor(new GiveBottleCommand(this));
+
+        if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null && getConfig().getBoolean("enable-placeholder-api")) {
+            new PlaceholderApiHook(this).register();
+        }
 
         getLogger().info("jLevels finished loading!");
 
