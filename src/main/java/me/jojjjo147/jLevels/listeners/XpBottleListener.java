@@ -4,6 +4,7 @@ import me.jojjjo147.jLevels.JLevels;
 import me.jojjjo147.jLevels.XPManager;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -45,6 +46,7 @@ public class XpBottleListener implements Listener {
                     item.setAmount(item.getAmount() - 1);
 
                     xpmg.addXP(p, xpAmount, plugin.getConfig().getString("lang.xpreason-xpbottle"));
+                    p.playSound(p, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
 
                 }
 
