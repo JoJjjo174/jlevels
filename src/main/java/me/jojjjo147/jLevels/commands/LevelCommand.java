@@ -29,10 +29,10 @@ public class LevelCommand implements CommandExecutor {
             String message = plugin.getConfig().getString("lang.message-level");
             message = applyPlaceholders(p, message);
 
-            p.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
+            commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
 
         } else {
-           plugin.getLogger().info(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.command-not-player")));
+            commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.command-not-player")));
         }
 
         return true;

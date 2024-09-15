@@ -48,18 +48,18 @@ public class GiveBottleCommand implements CommandExecutor {
 
                     p.getInventory().addItem(item);
 
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.message-xpbottle-given")));
+                    commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.message-xpbottle-given")));
 
                 } catch (NumberFormatException e) {
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.message-xp-number")));
+                    commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.message-xp-number")));
                 }
 
             } else {
-                p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.message-missing-arguments")));
+                commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.message-missing-arguments")));
             }
 
         } else {
-            plugin.getLogger().info(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.command-not-player")));
+            commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.command-not-player")));
         }
 
         return true;

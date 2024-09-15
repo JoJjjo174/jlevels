@@ -50,21 +50,21 @@ public class AddXPCommand implements CommandExecutor {
 
                         xpmg.addXP(target, xpAmount, xpReason);
 
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.message-add-xp")));
+                        commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.message-add-xp")));
 
                     } else {
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.message-invalid-player")));
+                        commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.message-invalid-player")));
                     }
 
                 } catch (NumberFormatException e) {
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.message-xp-number")));
+                    commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.message-xp-number")));
                 }
 
             } else {
-                p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.message-missing-arguments")));
+                commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.message-missing-arguments")));
             }
         } else {
-            plugin.getLogger().info(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.command-not-player")));
+            commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.command-not-player")));
         }
 
         return true;
