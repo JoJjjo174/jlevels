@@ -14,6 +14,7 @@ lang:
   xpreason-admin: "Given by Admin"
   xpreason-achievement: "Achievement"
   xpreason-xpbottle: "XP Bottle"
+  xpreason-player-killed: "Player Kill"
   name-xpbottle: "&b%xp%XP" # Available Placeholders: %xp%
   lore-xpbottle: "&7right click to get &b%xp%XP"  # Available Placeholders: %xp%
 
@@ -27,6 +28,7 @@ enable-placeholder-api: true
 rewards:
   monster-kill: 2
   achievement: 10
+  player-kill: 5
 
 level-rewards:
   1:

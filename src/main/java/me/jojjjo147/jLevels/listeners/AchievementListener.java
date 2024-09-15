@@ -25,7 +25,6 @@ public class AchievementListener implements Listener {
         if (!key.getKey().startsWith("recipes/")) {
 
             Player p = e.getPlayer();
-            p.sendMessage("bong!");
             xpmg.addXP(p, plugin.getConfig().getInt("rewards.achievement"), plugin.getConfig().getString("lang.xpreason-achievement"));
 
         }
