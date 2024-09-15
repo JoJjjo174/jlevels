@@ -7,6 +7,9 @@ import me.jojjjo147.jLevels.listeners.*;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import org.bstats.bukkit.Metrics;
+import org.bukkit.plugin.java.JavaPlugin;
+
 public final class JLevels extends JavaPlugin {
 
     @Override
@@ -38,6 +41,9 @@ public final class JLevels extends JavaPlugin {
         if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null && getConfig().getBoolean("enable-placeholder-api")) {
             new PlaceholderApiHook(this).register();
         }
+
+        int pluginId = 23375;
+        Metrics metrics = new Metrics(this, pluginId);
 
         getLogger().info("jLevels finished loading!");
 
