@@ -35,7 +35,7 @@ public final class JLevels extends JavaPlugin {
         }
 
         getCommand("level").setExecutor(new LevelCommand(this));
-        getCommand("addxp").setExecutor(new AddXPCommand(this, new XPManager(this)));
+        getCommand("addxp").setExecutor(new AddXPCommand(this, xpmg));
         getCommand("givexpbottle").setExecutor(new GiveBottleCommand(this));
 
         if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null && getConfig().getBoolean("enable-placeholder-api")) {

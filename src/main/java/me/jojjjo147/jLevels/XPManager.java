@@ -29,8 +29,11 @@ public class XPManager {
 
         PersistentDataContainer data = p.getPersistentDataContainer();
 
-        int xp = data.get(new NamespacedKey(plugin, "xp"), PersistentDataType.INTEGER);
-        int level = data.get(new NamespacedKey(plugin, "level"), PersistentDataType.INTEGER);
+        final NamespacedKey levelKey = new NamespacedKey(plugin, "level");
+        final NamespacedKey xpKey = new NamespacedKey(plugin, "xp");
+
+        int xp = data.get(xpKey, PersistentDataType.INTEGER);
+        int level = data.get(levelKey, PersistentDataType.INTEGER);
 
         Expression expression = new ExpressionBuilder(plugin.getConfig().getString("xp-formula"))
                 .variables("x")
@@ -67,8 +70,8 @@ public class XPManager {
 
             p.playSound(p, Sound.UI_TOAST_CHALLENGE_COMPLETE, 1, 1);
 
-            data.set(new NamespacedKey(plugin, "xp"), PersistentDataType.INTEGER, xp);
-            data.set(new NamespacedKey(plugin, "level"), PersistentDataType.INTEGER, level);
+            data.set(xpKey, PersistentDataType.INTEGER, xp);
+            data.set(levelKey, PersistentDataType.INTEGER, level);
 
         } else {
             data.set(new NamespacedKey(plugin, "xp"), PersistentDataType.INTEGER, xp);

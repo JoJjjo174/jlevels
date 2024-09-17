@@ -24,12 +24,15 @@ public class JoinListener implements Listener {
         Player p = e.getPlayer();
         PersistentDataContainer data = p.getPersistentDataContainer();
 
-        if (!data.has(new NamespacedKey(plugin, "level"), PersistentDataType.INTEGER)) {
-            data.set(new NamespacedKey(plugin, "level"), PersistentDataType.INTEGER, 0);
+        final NamespacedKey levelKey = new NamespacedKey(plugin, "level");
+        final NamespacedKey xpKey = new NamespacedKey(plugin, "xp");
+
+        if (!data.has(levelKey, PersistentDataType.INTEGER)) {
+            data.set(levelKey, PersistentDataType.INTEGER, 0);
         }
 
-        if (!data.has(new NamespacedKey(plugin, "xp"), PersistentDataType.INTEGER)) {
-            data.set(new NamespacedKey(plugin, "xp"), PersistentDataType.INTEGER, 0);
+        if (!data.has(xpKey, PersistentDataType.INTEGER)) {
+            data.set(xpKey, PersistentDataType.INTEGER, 0);
         }
 
     }
