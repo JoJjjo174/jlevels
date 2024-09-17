@@ -12,12 +12,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class JLevels extends JavaPlugin {
 
+    private static XPManager xpmg;
+
     @Override
     public void onEnable() {
 
         saveDefaultConfig();
 
-        XPManager xpmg = new XPManager(this);
+        xpmg = new XPManager(this);
 
         getServer().getPluginManager().registerEvents(new JoinListener(this), this);
         getServer().getPluginManager().registerEvents(new XpBottleListener(this, xpmg), this);
@@ -47,6 +49,10 @@ public final class JLevels extends JavaPlugin {
 
         getLogger().info("jLevels finished loading!");
 
+    }
+
+    public static XPManager getXpmg() {
+        return xpmg;
     }
 
 

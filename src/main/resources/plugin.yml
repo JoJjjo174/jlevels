@@ -13,7 +13,7 @@ commands:
     description: give someone xp
     permission: jlevels.addxp
   givexpbottle:
-    usage: /<command> <xp>
+    usage: /<command> <xp> <amount>
     permission: jlevels.addxp
 permissions:
   jlevels.level:
