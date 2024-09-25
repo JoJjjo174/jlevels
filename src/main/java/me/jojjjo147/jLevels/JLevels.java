@@ -8,7 +8,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import org.bstats.bukkit.Metrics;
-import org.bukkit.plugin.java.JavaPlugin;
+import gg.gyro.localeAPI.Locales;
 
 public final class JLevels extends JavaPlugin {
 
@@ -18,6 +18,11 @@ public final class JLevels extends JavaPlugin {
     public void onEnable() {
 
         saveDefaultConfig();
+
+        Locales.saveDefaultConfig(this, "en_us.yml");
+        Locales.saveDefaultConfig(this, "fr_fr.yml");
+
+        Locales locales = new Locales(this, getConfig().getString("default_language"));
 
         xpmg = new XPManager(this);
 

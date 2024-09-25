@@ -1,5 +1,6 @@
 package me.jojjjo147.jLevels.commands;
 
+import gg.gyro.localeAPI.Locales;
 import me.jojjjo147.jLevels.JLevels;
 import me.jojjjo147.jLevels.XPManager;
 import org.bukkit.ChatColor;
@@ -19,6 +20,7 @@ import java.util.Arrays;
 public class GiveBottleCommand implements CommandExecutor {
 
     private final JLevels plugin;
+    private final Locales locales = Locales.getInstance();
 
     public GiveBottleCommand(JLevels plugin) {
         this.plugin = plugin;
@@ -38,9 +40,9 @@ public class GiveBottleCommand implements CommandExecutor {
                 try {
                     data.set(new NamespacedKey(plugin, "jxp"), PersistentDataType.INTEGER, Integer.valueOf(args[0]));
 
-                    meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.name-xpbottle").replace("%xp%", args[0])));
+                    meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', locales.get(p.getLocale(), "name-xpbottle").replace("%xp%", args[0])));
                     meta.setLore(Arrays.asList(
-                            ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.lore-xpbottle").replace("%xp%", args[0]))
+                            ChatColor.translateAlternateColorCodes('&', locales.get(p.getLocale(), "lore-xpbottle").replace("%xp%", args[0]))
                     ));
 
                     item.setItemMeta(meta);
@@ -48,18 +50,18 @@ public class GiveBottleCommand implements CommandExecutor {
 
                     p.getInventory().addItem(item);
 
-                    commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.message-xpbottle-given")));
+                    commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', locales.get(p.getLocale(), "message-xpbottle-given")));
 
                 } catch (NumberFormatException e) {
-                    commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.message-xp-number")));
+                    commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', locales.get(p.getLocale(), "message-xp-number")));
                 }
 
             } else {
-                commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.message-missing-arguments")));
+                commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', locales.get(p.getLocale(), "message-missing-arguments")));
             }
 
         } else {
-            commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.command-not-player")));
+            commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', locales.get("command-not-player")));
         }
 
         return true;
