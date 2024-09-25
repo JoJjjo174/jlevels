@@ -16,7 +16,7 @@ public class AddXPCommand implements CommandExecutor {
     private final XPManager xpmg;
     private final Locales locales = Locales.getInstance();
 
-    public AddXPCommand(JLevels plugin, XPManager xpmg, Locales locales) {
+    public AddXPCommand(JLevels plugin, XPManager xpmg) {
         this.plugin = plugin;
         this.xpmg = xpmg;
     }
