@@ -2,7 +2,6 @@ package me.jojjjo147.jLevels.commands;
 
 import gg.gyro.localeAPI.Locales;
 import me.jojjjo147.jLevels.JLevels;
-import me.jojjjo147.jLevels.XPManager;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
