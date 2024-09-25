@@ -70,7 +70,7 @@
         <repository>
             <id>mathias-maven</id>
             <name>Mathias's Maven Repository</name>
-            <url>https://mvn.coolcraft.ovh/snapshots</url>
+            <url>https://mvn.coolcraft.ovh/releases</url>
         </repository>
         <repository>
             <id>sonatype</id>
@@ -88,7 +88,7 @@
         <dependency>
             <groupId>gg.gyro</groupId>
             <artifactId>LocaleAPI</artifactId>
-            <version>SNAPSHOT</version>
+            <version>snapshot</version>
         </dependency>
         <dependency>
             <groupId>net.objecthunter</groupId>
