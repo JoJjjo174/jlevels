@@ -21,11 +21,12 @@ public final class JLevels extends JavaPlugin {
 
         saveDefaultConfig();
 
-        if (!getConfig().getBoolean("uniform_language")) {
+        if (getConfig().getBoolean("uniform_language")) {
             Locales.saveDefaultConfig(this, getConfig().getString("default_language") + ".yml");
         } else {
             Locales.saveDefaultConfig(this, "en_us.yml");
             Locales.saveDefaultConfig(this, "fr_fr.yml");
+            Locales.saveDefaultConfig(this, "de_de.yml");
         }
 
         locales = new Locales(this, getConfig().getString("default_language"));
