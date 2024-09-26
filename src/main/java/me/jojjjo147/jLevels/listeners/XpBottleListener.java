@@ -46,7 +46,7 @@ public class XpBottleListener implements Listener {
                     Player p = e.getPlayer();
                     item.setAmount(item.getAmount() - 1);
 
-                    xpmg.addXP(p, xpAmount, locales.get(p.getLocale(), "xpreason-xpbottle"));
+                    xpmg.addXP(p, xpAmount, plugin.getString(p, "xpreason-xpbottle"));
                     p.playSound(p, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
 
                 }

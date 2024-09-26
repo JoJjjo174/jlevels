@@ -57,7 +57,7 @@ public class XPManager {
                     rewards = plugin.getConfig().getStringList("level-rewards." + level + ".text");
                 }
 
-                p.sendMessage(ChatColor.translateAlternateColorCodes('&', applyPlaceholders(level, rewards, locales.get(p.getLocale(), "message-levelup"))));
+                p.sendMessage(ChatColor.translateAlternateColorCodes('&', applyPlaceholders(level, rewards, plugin.getString(p, "message-levelup"))));
 
                 ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
 
@@ -82,7 +82,7 @@ public class XPManager {
     }
 
     public void sendActionbar(Player p, int amount, String reason) {
-        p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.translateAlternateColorCodes('&', applyActionbarPlaceholders(amount, reason, locales.get(p.getLocale(), "actionbar-gained-xp")))));
+        p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.translateAlternateColorCodes('&', applyActionbarPlaceholders(amount, reason, plugin.getString(p, "actionbar-gained-xp")))));
     }
 
     public String applyActionbarPlaceholders(int xp, String reason, String text) {

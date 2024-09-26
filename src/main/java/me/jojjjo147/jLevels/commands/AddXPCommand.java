@@ -44,24 +44,24 @@ public class AddXPCommand implements CommandExecutor {
                             xpReason = xpReason.substring(0, xpReason.length() - 1);
 
                         } else {
-                            xpReason = locales.get(target.getLocale(), "xpreason-admin");
+                            xpReason = plugin.getString(target, "xpreason-admin");
 
                         }
 
                         xpmg.addXP(target, xpAmount, xpReason);
 
-                        commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', locales.get(p.getLocale(), "message-add-xp")));
+                        commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getString(p, "message-add-xp")));
 
                     } else {
-                        commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', locales.get(p.getLocale(), "message-invalid-player")));
+                        commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getString(p, "message-invalid-player")));
                     }
 
                 } catch (NumberFormatException e) {
-                    commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', locales.get(p.getLocale(), "message-xp-number")));
+                    commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getString(p, "message-xp-number")));
                 }
 
             } else {
-                commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', locales.get(p.getLocale(), "message-missing-arguments")));
+                commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getString(p, "message-missing-arguments")));
             }
         } else {
             commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', locales.get("command-not-player")));

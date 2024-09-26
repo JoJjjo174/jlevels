@@ -28,7 +28,7 @@ public class LevelCommand implements CommandExecutor {
 
         if (commandSender instanceof Player p) {
 
-            String message = locales.get(p.getLocale(), "message-level");
+            String message = plugin.getString(p, "message-level");
             message = applyPlaceholders(p, message);
 
             commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', message));

@@ -27,7 +27,7 @@ public class MobKillListener implements Listener {
         if (e.getEntity().getKiller() instanceof Player p && e.getEntity() instanceof Monster) {
 
             int xpAmount = plugin.getConfig().getInt("rewards.monster-kill");
-            xpmg.addXP(p, xpAmount, locales.get(p.getLocale(), "xpreason-moster-killed"));
+            xpmg.addXP(p, xpAmount, plugin.getString(p, "xpreason-moster-killed"));
 
         }
 

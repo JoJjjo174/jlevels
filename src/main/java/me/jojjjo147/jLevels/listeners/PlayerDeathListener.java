@@ -25,7 +25,7 @@ public class PlayerDeathListener implements Listener {
         if (e.getEntity().getKiller() != null && e.getEntity().getKiller() instanceof Player killer) {
 
             int xpAmount = plugin.getConfig().getInt("rewards.player-kill");
-            xpmg.addXP(killer, xpAmount, locales.get(killer.getLocale(), "xpreason-player-killed"));
+            xpmg.addXP(killer, xpAmount, plugin.getString(killer, "xpreason-player-killed"));
 
         }
 

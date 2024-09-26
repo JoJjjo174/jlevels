@@ -27,7 +27,7 @@ public class AchievementListener implements Listener {
         if (!key.getKey().startsWith("recipes/")) {
 
             Player p = e.getPlayer();
-            xpmg.addXP(p, plugin.getConfig().getInt("rewards.achievement"), locales.get(p.getLocale(), "xpreason-achievement"));
+            xpmg.addXP(p, plugin.getConfig().getInt("rewards.achievement"), plugin.getString(p, "xpreason-achievement"));
 
         }
 
