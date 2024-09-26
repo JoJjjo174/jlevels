@@ -1,5 +1,5 @@
 name: jLevels
-version: '0.2'
+version: '0.3'
 main: me.jojjjo147.jLevels.JLevels
 api-version: '1.21'
 softdepend: [PlaceholderAPI]
