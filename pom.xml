@@ -68,6 +68,11 @@
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
         <repository>
+            <id>mathias-maven</id>
+            <name>Mathias's Maven Repository</name>
+            <url>https://mvn.coolcraft.ovh/releases</url>
+        </repository>
+        <repository>
             <id>sonatype</id>
             <url>https://oss.sonatype.org/content/groups/public/</url>
         </repository>
@@ -79,6 +84,11 @@
             <artifactId>spigot-api</artifactId>
             <version>1.21-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>gg.gyro</groupId>
+            <artifactId>LocaleAPI</artifactId>
+            <version>snapshot</version>
         </dependency>
         <dependency>
             <groupId>net.objecthunter</groupId>

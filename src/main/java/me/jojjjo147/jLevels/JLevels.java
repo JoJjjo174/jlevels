@@ -5,19 +5,30 @@ import me.jojjjo147.jLevels.commands.GiveBottleCommand;
 import me.jojjjo147.jLevels.commands.LevelCommand;
 import me.jojjjo147.jLevels.listeners.*;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import org.bstats.bukkit.Metrics;
-import org.bukkit.plugin.java.JavaPlugin;
+import gg.gyro.localeAPI.Locales;
 
 public final class JLevels extends JavaPlugin {
 
     private static XPManager xpmg;
+    private static Locales locales;
 
     @Override
     public void onEnable() {
 
         saveDefaultConfig();
+
+        if (!getConfig().getBoolean("uniform_language")) {
+            Locales.saveDefaultConfig(this, getConfig().getString("default_language") + ".yml");
+        } else {
+            Locales.saveDefaultConfig(this, "en_us.yml");
+            Locales.saveDefaultConfig(this, "fr_fr.yml");
+        }
+
+        locales = new Locales(this, getConfig().getString("default_language"));
 
         xpmg = new XPManager(this);
 
@@ -55,5 +66,11 @@ public final class JLevels extends JavaPlugin {
         return xpmg;
     }
 
-
+    public String getString(Player target, String key) {
+        if (getConfig().getBoolean("uniform_language")) {
+            return locales.get(key);
+        } else {
+            return locales.get(target.getLocale(), key);
+        }
+    }
 }

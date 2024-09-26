@@ -1,5 +1,6 @@
 package me.jojjjo147.jLevels.commands;
 
+import gg.gyro.localeAPI.Locales;
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
 
@@ -16,6 +17,7 @@ import org.bukkit.persistence.PersistentDataType;
 public class LevelCommand implements CommandExecutor {
 
     private final JLevels plugin;
+    private final Locales locales = Locales.getInstance();
 
     public LevelCommand(JLevels plugin) {
         this.plugin = plugin;
@@ -26,13 +28,13 @@ public class LevelCommand implements CommandExecutor {
 
         if (commandSender instanceof Player p) {
 
-            String message = plugin.getConfig().getString("lang.message-level");
+            String message = plugin.getString(p, "message-level");
             message = applyPlaceholders(p, message);
 
             commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
 
         } else {
-            commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("lang.command-not-player")));
+            commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', locales.get("command-not-player")));
         }
 
         return true;

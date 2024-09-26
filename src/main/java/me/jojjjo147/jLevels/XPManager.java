@@ -1,5 +1,6 @@
 package me.jojjjo147.jLevels;
 
+import gg.gyro.localeAPI.Locales;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.objecthunter.exp4j.Expression;
@@ -19,6 +20,7 @@ import java.util.List;
 public class XPManager {
 
     private final JLevels plugin;
+    private final Locales locales = Locales.getInstance();
 
     public XPManager(JLevels plugin) {
         this.plugin = plugin;
@@ -55,7 +57,7 @@ public class XPManager {
                     rewards = plugin.getConfig().getStringList("level-rewards." + level + ".text");
                 }
 
-                p.sendMessage(ChatColor.translateAlternateColorCodes('&', applyPlaceholders(level, rewards, plugin.getConfig().getString("lang.message-levelup"))));
+                p.sendMessage(ChatColor.translateAlternateColorCodes('&', applyPlaceholders(level, rewards, plugin.getString(p, "message-levelup"))));
 
                 ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
 
@@ -80,7 +82,7 @@ public class XPManager {
     }
 
     public void sendActionbar(Player p, int amount, String reason) {
-        p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.translateAlternateColorCodes('&', applyActionbarPlaceholders(amount, reason, plugin.getConfig().getString("lang.actionbar-gained-xp")))));
+        p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.translateAlternateColorCodes('&', applyActionbarPlaceholders(amount, reason, plugin.getString(p, "actionbar-gained-xp")))));
     }
 
     public String applyActionbarPlaceholders(int xp, String reason, String text) {
