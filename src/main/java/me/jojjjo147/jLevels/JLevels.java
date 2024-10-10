@@ -100,8 +100,6 @@ public final class JLevels extends JavaPlugin {
 
             String latestVersion = json.toString().split("\"version_number\":\"")[1].split("\"")[0];
 
-            getLogger().info(latestVersion);
-
             if(!getDescription().getVersion().equalsIgnoreCase(latestVersion)) {
                 return true;
             }
