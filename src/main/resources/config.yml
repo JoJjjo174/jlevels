@@ -4,6 +4,7 @@ default_language: en_us
 uniform_language: false
 xp-formula: "100 + x^1.8" # x is the current level of the player
 enable-placeholder-api: true
+check-updates: true
 
 rewards:
   monster-kill: 2

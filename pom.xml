@@ -6,7 +6,7 @@
 
     <groupId>me.jojjjo147</groupId>
     <artifactId>jLevels</artifactId>
-    <version>0.3</version>
+    <version>0.3.1</version>
     <packaging>jar</packaging>
 
     <name>jLevels</name>

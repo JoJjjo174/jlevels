@@ -11,10 +11,17 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bstats.bukkit.Metrics;
 import gg.gyro.localeAPI.Locales;
 
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Scanner;
+
 public final class JLevels extends JavaPlugin {
 
     private static XPManager xpmg;
     private static Locales locales;
+    private static boolean outdated = false;
 
     @Override
     public void onEnable() {
@@ -33,7 +40,13 @@ public final class JLevels extends JavaPlugin {
 
         xpmg = new XPManager(this);
 
-        getServer().getPluginManager().registerEvents(new JoinListener(this), this);
+        if (getConfig().getBoolean("check-updates")) {
+            if (isOutdated("ZucF3Myf")) {
+                outdated = true;
+            }
+        }
+
+        getServer().getPluginManager().registerEvents(new JoinListener(this, outdated), this);
         getServer().getPluginManager().registerEvents(new XpBottleListener(this, xpmg), this);
 
         if (getConfig().getInt("rewards.monster-kill") > 0) {
@@ -52,7 +65,7 @@ public final class JLevels extends JavaPlugin {
         getCommand("addxp").setExecutor(new AddXPCommand(this, xpmg));
         getCommand("givexpbottle").setExecutor(new GiveBottleCommand(this));
 
-        if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null && getConfig().getBoolean("enable-placeholder-api")) {
+        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null && getConfig().getBoolean("enable-placeholder-api")) {
             new PlaceholderApiHook(this).register();
         }
 
@@ -61,6 +74,44 @@ public final class JLevels extends JavaPlugin {
 
         getLogger().info("jLevels finished loading!");
 
+    }
+
+    public boolean isOutdated(String modrinthID) {
+        try {
+            URL url = new URL("https://api.modrinth.com/v2/project/" + modrinthID + "/version");
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+            int status = con.getResponseCode();
+
+            if (status > 299) {
+                getLogger().warning("Error checking for updates");
+                return true;
+            }
+
+            InputStreamReader reader = new InputStreamReader(con.getInputStream());
+            Scanner scanner = new Scanner(reader);
+            StringBuilder json = new StringBuilder();
+            while (scanner.hasNext()) {
+                json.append(scanner.nextLine());
+            }
+
+            scanner.close();
+            con.disconnect();
+
+            String latestVersion = json.toString().split("\"version_number\":\"")[1].split("\"")[0];
+
+            getLogger().info(latestVersion);
+
+            if(!getDescription().getVersion().equalsIgnoreCase(latestVersion)) {
+                return true;
+            }
+
+            return false;
+
+        } catch (IOException e) {
+            getLogger().warning("Error checking for updates");
+            return true;
+        }
     }
 
     public static XPManager getXpmg() {

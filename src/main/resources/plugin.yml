@@ -1,5 +1,5 @@
 name: jLevels
-version: '0.3'
+version: '0.3.1'
 main: me.jojjjo147.jLevels.JLevels
 api-version: '1.21'
 softdepend: [PlaceholderAPI]
@@ -21,4 +21,7 @@ permissions:
     default: true
   jlevels.addxp:
     description: Give and create XP bottles
+    default: op
+  jlevels.receive-outdated-warning:
+    description: Receive a notification if the plugin is outdated
     default: op

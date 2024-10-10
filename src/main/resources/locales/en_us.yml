@@ -14,3 +14,4 @@ xpreason-xpbottle: "XP Bottle"
 xpreason-player-killed: "Player Kill"
 name-xpbottle: "&b%xp%XP" # Available Placeholders: %xp%
 lore-xpbottle: "&7right click to get &b%xp%XP"  # Available Placeholders: %xp%
+outdated-warning: "&6There is a new version of Jlevels available! You can download it at &cmodrinth.com/plugin/jlevels"

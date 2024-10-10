@@ -14,3 +14,4 @@ xpreason-xpbottle: "Fiole d'expérience"
 xpreason-player-killed: "Joueur tué"
 name-xpbottle: "&b%xp%XP" # Variables disponible: %xp%
 lore-xpbottle: "&7Clique-droit pour obtenir &b%xp%XP"  # Variables disponible: %xp%
+outdated-warning: "&6Une nouvelle version de Jlevels est disponible ! Vous pouvez la télécharger à &cmodrinth.com/plugin/jlevels"
