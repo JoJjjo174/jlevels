@@ -70,7 +70,7 @@
         <repository>
             <id>mathias-maven</id>
             <name>Mathias's Maven Repository</name>
-            <url>https://mvn.coolcraft.ovh/releases</url>
+            <url>https://mvn.mathiasd.fr/releases</url>
         </repository>
         <repository>
             <id>sonatype</id>
