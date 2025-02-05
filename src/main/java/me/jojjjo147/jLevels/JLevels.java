@@ -3,6 +3,7 @@ package me.jojjjo147.jLevels;
 import me.jojjjo147.jLevels.commands.AddXPCommand;
 import me.jojjjo147.jLevels.commands.GiveBottleCommand;
 import me.jojjjo147.jLevels.commands.LevelCommand;
+import me.jojjjo147.jLevels.commands.ReloadConfigCommand;
 import me.jojjjo147.jLevels.listeners.*;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -64,6 +65,7 @@ public final class JLevels extends JavaPlugin {
         getCommand("level").setExecutor(new LevelCommand(this));
         getCommand("addxp").setExecutor(new AddXPCommand(this, xpmg));
         getCommand("givexpbottle").setExecutor(new GiveBottleCommand(this));
+        getCommand("jreload").setExecutor(new ReloadConfigCommand(this));
 
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null && getConfig().getBoolean("enable-placeholder-api")) {
             new PlaceholderApiHook(this).register();

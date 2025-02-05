@@ -1,0 +1,12 @@
+me\jojjjo147\jLevels\commands\GiveBottleCommand.class
+me\jojjjo147\jLevels\listeners\XpBottleListener.class
+me\jojjjo147\jLevels\PlaceholderApiHook.class
+me\jojjjo147\jLevels\listeners\JoinListener.class
+me\jojjjo147\jLevels\XPManager.class
+me\jojjjo147\jLevels\listeners\MobKillListener.class
+me\jojjjo147\jLevels\commands\AddXPCommand.class
+me\jojjjo147\jLevels\listeners\PlayerDeathListener.class
+me\jojjjo147\jLevels\commands\ReloadConfigCommand.class
+me\jojjjo147\jLevels\listeners\AchievementListener.class
+me\jojjjo147\jLevels\JLevels.class
+me\jojjjo147\jLevels\commands\LevelCommand.class
