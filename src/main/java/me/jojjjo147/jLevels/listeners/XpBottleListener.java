@@ -1,6 +1,5 @@
 package me.jojjjo147.jLevels.listeners;
 
-import gg.gyro.localeAPI.Locales;
 import me.jojjjo147.jLevels.JLevels;
 import me.jojjjo147.jLevels.XPManager;
 import org.bukkit.Material;
@@ -19,7 +18,6 @@ public class XpBottleListener implements Listener {
 
     private final JLevels plugin;
     private final XPManager xpmg;
-    private final Locales locales = Locales.getInstance();
 
     public XpBottleListener(JLevels plugin, XPManager xpmg) {
         this.plugin = plugin;
@@ -46,7 +44,7 @@ public class XpBottleListener implements Listener {
                     Player p = e.getPlayer();
                     item.setAmount(item.getAmount() - 1);
 
-                    xpmg.addXP(p, xpAmount, plugin.getString(p, "xpreason-xpbottle"));
+                    xpmg.addXP(p, xpAmount, plugin.getMessage("xpreason-xpbottle"));
                     p.playSound(p, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
 
                 }

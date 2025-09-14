@@ -4,13 +4,12 @@ import me.jojjjo147.jLevels.commands.AddXPCommand;
 import me.jojjjo147.jLevels.commands.GiveBottleCommand;
 import me.jojjjo147.jLevels.commands.LevelCommand;
 import me.jojjjo147.jLevels.commands.ReloadConfigCommand;
+import me.jojjjo147.jLevels.files.LanguageFile;
 import me.jojjjo147.jLevels.listeners.*;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import org.bstats.bukkit.Metrics;
-import gg.gyro.localeAPI.Locales;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -21,30 +20,20 @@ import java.util.Scanner;
 public final class JLevels extends JavaPlugin {
 
     private static XPManager xpmg;
-    private static Locales locales;
     private static boolean outdated = false;
+    private LanguageFile langConfig;
 
     @Override
     public void onEnable() {
 
         saveDefaultConfig();
 
-        if (getConfig().getBoolean("uniform_language")) {
-            Locales.saveDefaultConfig(this, getConfig().getString("default_language") + ".yml");
-        } else {
-            Locales.saveDefaultConfig(this, "en_us.yml");
-            Locales.saveDefaultConfig(this, "fr_fr.yml");
-            Locales.saveDefaultConfig(this, "de_de.yml");
-        }
-
-        locales = new Locales(this, getConfig().getString("default_language"));
+        langConfig = new LanguageFile(this, getConfig().getString("language"));
 
         xpmg = new XPManager(this);
 
         if (getConfig().getBoolean("check-updates")) {
-            if (isOutdated("ZucF3Myf")) {
-                outdated = true;
-            }
+            outdated = isOutdated("ZucF3Myf");
         }
 
         getServer().getPluginManager().registerEvents(new JoinListener(this, outdated), this);
@@ -118,11 +107,20 @@ public final class JLevels extends JavaPlugin {
         return xpmg;
     }
 
-    public String getString(Player target, String key) {
-        if (getConfig().getBoolean("uniform_language")) {
-            return locales.get(key);
-        } else {
-            return locales.get(target.getLocale(), key);
+    public String getMessage(String key) {
+        return langConfig.get().getString(key);
+    }
+
+    public LanguageFile getLanguageConfig() {
+        return langConfig;
+    }
+
+    public void reloadAllConfigurations() {
+        reloadConfig();
+        langConfig.reload();
+
+        if (!getConfig().getString("language").equals(langConfig.getLanguage())) {
+            langConfig = new LanguageFile(this, getConfig().getString("language"));
         }
     }
 }

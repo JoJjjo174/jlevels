@@ -1,7 +1,6 @@
 # ----------------- Settings -----------------
 
-default_language: en_us # Default language, for when a player's language isn't supported
-uniform_language: false # When enabled, The plugin will be in the default_language for all players
+language: english.yml # Languages available by default: english.yml, german.yml, french.yml
 xp-formula: "100 + x^1.8" # x is the current level of the player
 enable-placeholder-api: true
 check-updates: true
@@ -22,4 +21,4 @@ level-rewards:
 
 # --------------------------------------------
 
-config-version: 1 # DO NOT CHANGE
+config-version: 2 # DO NOT CHANGE

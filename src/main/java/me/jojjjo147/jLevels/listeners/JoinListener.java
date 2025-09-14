@@ -1,6 +1,5 @@
 package me.jojjjo147.jLevels.listeners;
 
-import gg.gyro.localeAPI.Locales;
 import me.jojjjo147.jLevels.JLevels;
 import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
@@ -15,7 +14,6 @@ public class JoinListener implements Listener {
 
     private final JLevels plugin;
     private final boolean outdated;
-    private final Locales locales = Locales.getInstance();
 
     public JoinListener(JLevels plugin, boolean outdated) {
         this.plugin = plugin;
@@ -41,7 +39,7 @@ public class JoinListener implements Listener {
         }
 
         if (outdated && p.hasPermission("jlevels.receive-outdated-warning")) {
-            p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getString(p, "outdated-warning")));
+            p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getMessage("outdated-warning")));
         }
 
     }

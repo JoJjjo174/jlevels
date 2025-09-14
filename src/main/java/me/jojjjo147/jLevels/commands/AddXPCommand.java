@@ -1,6 +1,5 @@
 package me.jojjjo147.jLevels.commands;
 
-import gg.gyro.localeAPI.Locales;
 import me.jojjjo147.jLevels.JLevels;
 import me.jojjjo147.jLevels.XPManager;
 import org.bukkit.Bukkit;
@@ -14,7 +13,6 @@ public class AddXPCommand implements CommandExecutor {
 
     private final JLevels plugin;
     private final XPManager xpmg;
-    private final Locales locales = Locales.getInstance();
 
     public AddXPCommand(JLevels plugin, XPManager xpmg) {
         this.plugin = plugin;
@@ -44,27 +42,27 @@ public class AddXPCommand implements CommandExecutor {
                             xpReason = xpReason.substring(0, xpReason.length() - 1);
 
                         } else {
-                            xpReason = plugin.getString(target, "xpreason-admin");
+                            xpReason = plugin.getMessage("xpreason-admin");
 
                         }
 
                         xpmg.addXP(target, xpAmount, xpReason);
 
-                        commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getString(p, "message-add-xp")));
+                        commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getMessage("message-add-xp")));
 
                     } else {
-                        commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getString(p, "message-invalid-player")));
+                        commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getMessage("message-invalid-player")));
                     }
 
                 } catch (NumberFormatException e) {
-                    commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getString(p, "message-xp-number")));
+                    commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getMessage("message-xp-number")));
                 }
 
             } else {
-                commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getString(p, "message-missing-arguments")));
+                commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getMessage("message-missing-arguments")));
             }
         } else {
-            commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', locales.get("command-not-player")));
+            commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getMessage("command-not-player")));
         }
 
         return true;

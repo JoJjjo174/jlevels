@@ -1,6 +1,5 @@
 package me.jojjjo147.jLevels.listeners;
 
-import gg.gyro.localeAPI.Locales;
 import me.jojjjo147.jLevels.JLevels;
 import me.jojjjo147.jLevels.XPManager;
 import org.bukkit.NamespacedKey;
@@ -13,8 +12,6 @@ public class AchievementListener implements Listener {
 
     private final JLevels plugin;
     private final XPManager xpmg;
-    private final Locales locales = Locales.getInstance();
-
     public AchievementListener(JLevels plugin, XPManager xpmg) {
         this.plugin = plugin;
         this.xpmg = xpmg;
@@ -27,7 +24,7 @@ public class AchievementListener implements Listener {
         if (!key.getKey().startsWith("recipes/")) {
 
             Player p = e.getPlayer();
-            xpmg.addXP(p, plugin.getConfig().getInt("rewards.achievement"), plugin.getString(p, "xpreason-achievement"));
+            xpmg.addXP(p, plugin.getConfig().getInt("rewards.achievement"), plugin.getMessage("xpreason-achievement"));
 
         }
 

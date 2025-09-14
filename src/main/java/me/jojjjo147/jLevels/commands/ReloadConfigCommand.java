@@ -1,6 +1,5 @@
 package me.jojjjo147.jLevels.commands;
 
-import gg.gyro.localeAPI.Locales;
 import me.jojjjo147.jLevels.JLevels;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -11,8 +10,6 @@ import org.jetbrains.annotations.NotNull;
 public class ReloadConfigCommand implements CommandExecutor {
 
     private final JLevels plugin;
-    private final Locales locales = Locales.getInstance();
-
     public ReloadConfigCommand(JLevels plugin) {
         this.plugin = plugin;
     }
@@ -20,9 +17,9 @@ public class ReloadConfigCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
 
-        commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', locales.get("message-reload-config")));
-        plugin.reloadConfig();
-        commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', locales.get("message-reload-config-done")));
+        commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getMessage("message-reload-config")));
+        plugin.reloadAllConfigurations();
+        commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getMessage("message-reload-config-done")));
 
         return true;
     }
