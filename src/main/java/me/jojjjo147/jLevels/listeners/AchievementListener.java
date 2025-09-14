@@ -11,10 +11,8 @@ import org.bukkit.event.player.PlayerAdvancementDoneEvent;
 public class AchievementListener implements Listener {
 
     private final JLevels plugin;
-    private final XPManager xpmg;
-    public AchievementListener(JLevels plugin, XPManager xpmg) {
+    public AchievementListener(JLevels plugin) {
         this.plugin = plugin;
-        this.xpmg = xpmg;
     }
     @EventHandler
     public void onAchievement(PlayerAdvancementDoneEvent e) {
@@ -24,7 +22,7 @@ public class AchievementListener implements Listener {
         if (!key.getKey().startsWith("recipes/")) {
 
             Player p = e.getPlayer();
-            xpmg.addXP(p, plugin.getConfig().getInt("rewards.achievement"), plugin.getMessage("xpreason-achievement"));
+            plugin.getXpManager().addXP(p, plugin.getConfig().getInt("rewards.achievement"), plugin.getMessage("xpreason-achievement"));
 
         }
 

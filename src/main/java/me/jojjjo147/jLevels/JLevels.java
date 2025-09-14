@@ -19,7 +19,7 @@ import java.util.Scanner;
 
 public final class JLevels extends JavaPlugin {
 
-    private static XPManager xpmg;
+    private XPManager xpmg;
     private static boolean outdated = false;
     private LanguageFile langConfig;
 
@@ -37,18 +37,18 @@ public final class JLevels extends JavaPlugin {
         }
 
         getServer().getPluginManager().registerEvents(new JoinListener(this, outdated), this);
-        getServer().getPluginManager().registerEvents(new XpBottleListener(this, xpmg), this);
+        getServer().getPluginManager().registerEvents(new XpBottleListener(this), this);
 
         if (getConfig().getInt("rewards.monster-kill") > 0) {
-            getServer().getPluginManager().registerEvents(new MobKillListener(this, xpmg), this);
+            getServer().getPluginManager().registerEvents(new MobKillListener(this), this);
         }
 
         if (getConfig().getInt("rewards.achievement") > 0) {
-            getServer().getPluginManager().registerEvents(new AchievementListener(this, xpmg), this);
+            getServer().getPluginManager().registerEvents(new AchievementListener(this), this);
         }
 
         if (getConfig().getInt("rewards.player-kill") > 0) {
-            getServer().getPluginManager().registerEvents(new PlayerDeathListener(this, xpmg), this);
+            getServer().getPluginManager().registerEvents(new PlayerDeathListener(this), this);
         }
 
         getCommand("level").setExecutor(new LevelCommand(this));
@@ -103,7 +103,7 @@ public final class JLevels extends JavaPlugin {
         }
     }
 
-    public static XPManager getXpmg() {
+    public XPManager getXpManager() {
         return xpmg;
     }
 
@@ -119,7 +119,7 @@ public final class JLevels extends JavaPlugin {
         reloadConfig();
         langConfig.reload();
 
-        if (!getConfig().getString("language").equals(langConfig.getLanguage())) {
+        if (!getConfig().getString("language").equalsIgnoreCase(langConfig.getLanguage())) {
             langConfig = new LanguageFile(this, getConfig().getString("language"));
         }
     }

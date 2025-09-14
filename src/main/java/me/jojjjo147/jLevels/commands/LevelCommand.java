@@ -44,12 +44,7 @@ public class LevelCommand implements CommandExecutor {
         int level = data.get(new NamespacedKey(plugin, "level"), PersistentDataType.INTEGER);
         int xp = data.get(new NamespacedKey(plugin, "xp"), PersistentDataType.INTEGER);
 
-        Expression expression = new ExpressionBuilder(plugin.getConfig().getString("xp-formula"))
-                .variables("x")
-                .build()
-                .setVariable("x", level);
-
-        int required_xp = (int)expression.evaluate();
+        int required_xp = plugin.getXpManager().getRequiredXP(level);
 
         text = text.replace("%player%", player.getDisplayName());
         text = text.replace("%level%", String.valueOf(level));

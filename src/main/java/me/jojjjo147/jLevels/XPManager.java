@@ -35,12 +35,7 @@ public class XPManager {
         int xp = data.get(xpKey, PersistentDataType.INTEGER);
         int level = data.get(levelKey, PersistentDataType.INTEGER);
 
-        Expression expression = new ExpressionBuilder(plugin.getConfig().getString("xp-formula"))
-                .variables("x")
-                .build()
-                .setVariable("x", level);
-
-        int required_xp = (int)expression.evaluate();
+        int required_xp = getRequiredXP(level);
         xp += addXpAmount;
 
         if (required_xp <= xp) {
@@ -64,8 +59,7 @@ public class XPManager {
                     Bukkit.dispatchCommand(console, command);
                 }
 
-                expression.setVariable("x", level);
-                required_xp = (int)expression.evaluate();
+                required_xp = getRequiredXP(level);
             }
 
             p.playSound(p, Sound.UI_TOAST_CHALLENGE_COMPLETE, 1, 1);
@@ -106,5 +100,21 @@ public class XPManager {
         text = text.replace("%rewards%", rewardString);
 
         return text;
+    }
+
+    public int getRequiredXP (int level) {
+        String xpFormula = plugin.getConfig().getString("xp-formula");
+
+        if (xpFormula == null) {
+            plugin.getLogger().warning("Couldn't fetch XP formula");
+            return 0;
+        }
+
+        Expression expression = new ExpressionBuilder(xpFormula)
+                .variables("x")
+                .build()
+                .setVariable("x", level);
+
+        return (int)expression.evaluate();
     }
 }

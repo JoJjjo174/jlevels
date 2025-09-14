@@ -12,11 +12,9 @@ import org.bukkit.event.entity.EntityDeathEvent;
 public class MobKillListener implements Listener {
 
     private final JLevels plugin;
-    private final XPManager xpmg;
 
-    public MobKillListener(JLevels plugin, XPManager xpmg) {
+    public MobKillListener(JLevels plugin) {
         this.plugin = plugin;
-        this.xpmg = xpmg;
     }
 
     @EventHandler
@@ -25,7 +23,7 @@ public class MobKillListener implements Listener {
         if (e.getEntity().getKiller() instanceof Player p && e.getEntity() instanceof Monster) {
 
             int xpAmount = plugin.getConfig().getInt("rewards.monster-kill");
-            xpmg.addXP(p, xpAmount, plugin.getMessage("xpreason-moster-killed"));
+            plugin.getXpManager().addXP(p, xpAmount, plugin.getMessage("xpreason-moster-killed"));
 
         }
 

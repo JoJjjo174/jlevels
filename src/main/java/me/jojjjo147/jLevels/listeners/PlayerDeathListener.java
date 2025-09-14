@@ -10,11 +10,9 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 public class PlayerDeathListener implements Listener {
 
     private final JLevels plugin;
-    private final XPManager xpmg;
 
-    public PlayerDeathListener(JLevels plugin, XPManager xpmg) {
+    public PlayerDeathListener(JLevels plugin) {
         this.plugin = plugin;
-        this.xpmg = xpmg;
     }
 
     @EventHandler
@@ -23,7 +21,7 @@ public class PlayerDeathListener implements Listener {
         if (e.getEntity().getKiller() != null && e.getEntity().getKiller() instanceof Player killer) {
 
             int xpAmount = plugin.getConfig().getInt("rewards.player-kill");
-            xpmg.addXP(killer, xpAmount, plugin.getMessage("xpreason-player-killed"));
+            plugin.getXpManager().addXP(killer, xpAmount, plugin.getMessage("xpreason-player-killed"));
 
         }
 

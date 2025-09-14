@@ -34,20 +34,40 @@ public class PlaceholderApiHook extends PlaceholderExpansion {
     @Override
     public @Nullable String onPlaceholderRequest(Player player, @NotNull String params) {
 
-        if( player != null ) {
-            PersistentDataContainer data = player.getPersistentDataContainer();
-
-            if(data.has(new NamespacedKey(plugin, "level"), PersistentDataType.INTEGER)) {
-
-                return String.valueOf(data.get(new NamespacedKey(plugin, "level"), PersistentDataType.INTEGER));
-
-            } else {
-                return "0";
-            }
-
-        } else {
-            return "0";
+        if (player == null) {
+            return null;
         }
+
+        PersistentDataContainer data = player.getPersistentDataContainer();
+
+        switch (params.toLowerCase()) {
+            case "level":
+
+                if(data.has(new NamespacedKey(plugin, "level"), PersistentDataType.INTEGER)) {
+
+                    return String.valueOf(data.get(new NamespacedKey(plugin, "level"), PersistentDataType.INTEGER));
+
+                }
+                return "0";
+
+            case "xp":
+                if(data.has(new NamespacedKey(plugin, "xp"), PersistentDataType.INTEGER)) {
+
+                    return String.valueOf(data.get(new NamespacedKey(plugin, "xp"), PersistentDataType.INTEGER));
+
+                }
+                return "0";
+
+            case "required":
+                if(data.has(new NamespacedKey(plugin, "level"), PersistentDataType.INTEGER)) {
+
+                    return String.valueOf(plugin.getXpManager().getRequiredXP(data.get(new NamespacedKey(plugin, "level"), PersistentDataType.INTEGER)));
+
+                }
+                return "0";
+        }
+
+        return "0";
     }
 
 }

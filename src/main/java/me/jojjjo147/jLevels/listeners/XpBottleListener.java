@@ -17,12 +17,9 @@ import org.bukkit.persistence.PersistentDataType;
 public class XpBottleListener implements Listener {
 
     private final JLevels plugin;
-    private final XPManager xpmg;
 
-    public XpBottleListener(JLevels plugin, XPManager xpmg) {
-        this.plugin = plugin;
-        this.xpmg = xpmg;
-    }
+    public XpBottleListener(JLevels plugin) {
+        this.plugin = plugin;}
 
     @EventHandler
     public void onXpBottleThrow(PlayerInteractEvent e) {
@@ -44,7 +41,7 @@ public class XpBottleListener implements Listener {
                     Player p = e.getPlayer();
                     item.setAmount(item.getAmount() - 1);
 
-                    xpmg.addXP(p, xpAmount, plugin.getMessage("xpreason-xpbottle"));
+                    plugin.getXpManager().addXP(p, xpAmount, plugin.getMessage("xpreason-xpbottle"));
                     p.playSound(p, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
 
                 }
