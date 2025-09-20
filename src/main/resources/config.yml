@@ -1,8 +1,9 @@
 # ----------------- Settings -----------------
 
-language: english.yml # Languages available by default: english.yml, german.yml, french.yml
-xp-formula: "100 + x^1.8" # x is the current level of the player
-enable-placeholder-api: true
+language: english.yml         # Languages available by default: english.yml, german.yml, french.yml
+xp-formula: "100 + x^1.8"     # x is the current level of the player
+max-level: -1                 # Set to -1 to disable Max level
+enable-placeholder-api: true  # Available PAPI-Placeholders: %jlevel_level%, %jlevel_xp%, %jlevel_required%
 check-updates: true
 
 rewards:
@@ -12,12 +13,12 @@ rewards:
 
 level-rewards:
   1:
-    commands: # Available Placeholders: %player%
+    commands:                 # Available Placeholders: %player%
       - "give %player% diamond 1"
       - "give %player% dirt 64"
     text:
-      - "&3one Dirt"
-      - "&e64 Diamonds"
+      - "&3one Diamond"
+      - "&e64 Dirt"
 
 # --------------------------------------------
 

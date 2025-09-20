@@ -38,9 +38,16 @@ public class XPManager {
         int required_xp = getRequiredXP(level);
         xp += addXpAmount;
 
-        if (required_xp <= xp) {
+        int maxLevel = plugin.getConfig().getInt("max-level");
+        boolean reachedMaxLevel = false;
 
-            while (required_xp <= xp) {
+        if (maxLevel != -1) {
+            reachedMaxLevel = level >= maxLevel;
+        }
+
+        if (required_xp <= xp && !reachedMaxLevel) {
+
+            while (required_xp <= xp && !reachedMaxLevel) {
                 level++;
                 xp -= required_xp;
 
@@ -60,6 +67,10 @@ public class XPManager {
                 }
 
                 required_xp = getRequiredXP(level);
+
+                if (maxLevel != -1) {
+                    reachedMaxLevel = level >= maxLevel;
+                }
             }
 
             p.playSound(p, Sound.UI_TOAST_CHALLENGE_COMPLETE, 1, 1);

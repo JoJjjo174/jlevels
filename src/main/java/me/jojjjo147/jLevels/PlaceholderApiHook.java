@@ -65,9 +65,10 @@ public class PlaceholderApiHook extends PlaceholderExpansion {
 
                 }
                 return "0";
-        }
 
-        return "0";
+            default:
+                return "Please notify server admin: %jlevel% placeholder has been changed to %jlevel_level%";
+        }
     }
 
 }
