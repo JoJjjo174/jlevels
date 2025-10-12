@@ -18,7 +18,7 @@ public class PlaceholderApiHook extends PlaceholderExpansion {
 
     @Override
     public @NotNull String getIdentifier() {
-        return "jlevel";
+        return "jlevels";
     }
 
     @Override
@@ -67,7 +67,7 @@ public class PlaceholderApiHook extends PlaceholderExpansion {
                 return "0";
 
             default:
-                return "Please notify server admin: %jlevel% placeholder has been changed to %jlevel_level%";
+                return null;
         }
     }
 
