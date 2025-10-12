@@ -1,6 +1,6 @@
 command-not-player: "Cette commande peut seulement être utilisé par un joueur!"
-message-level: "&7Vous êtes niveau &d%level%&7\nProgression pour le niveau suivant: &d%xp%/%required_xp%" # Variables disponible: %player% %level% %xp% %required_xp%
-message-levelup: "&4&l-----&r &kx&r &bMontée de niveau! &r&kx&r &4&l-----&r\n&Vous êtes maintenant niveau &d%level%&7\nRécompenses:\n%rewards%\n&4&l-----&r &kx&r &bMontée de niveau! &r&kx&r &4&l-----&r" # Variables disponible: %level% %rewards%
+message-level: "&7Vous êtes niveau %level_colour%%level%&7\nProgression pour le niveau suivant: &d%xp%/%required_xp%" # Variables disponible: %player% %level% %xp% %required_xp% %level_colour%
+message-levelup: "&4&l-----&r &kx&r &bMontée de niveau! &r&kx&r &4&l-----&r\n&Vous êtes maintenant niveau %level_colour%%level%&7\nRécompenses:\n%rewards%\n&4&l-----&r &kx&r &bMontée de niveau! &r&kx&r &4&l-----&r" # Variables disponible: %level% %rewards% %level_colour%
 message-invalid-player: "&cJoueur invalide !"
 message-xp-number: "&cLes points d'expériences doivent être un nombre!"
 message-missing-arguments: "&cArguments manquants!"

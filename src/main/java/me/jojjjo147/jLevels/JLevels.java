@@ -111,12 +111,9 @@ public final class JLevels extends JavaPlugin {
         return langConfig.get().getString(key);
     }
 
-    public LanguageFile getLanguageConfig() {
-        return langConfig;
-    }
-
     public void reloadAllConfigurations() {
         reloadConfig();
+        xpmg.reload();
         langConfig.reload();
 
         if (!getConfig().getString("language").equalsIgnoreCase(langConfig.getLanguage())) {

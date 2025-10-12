@@ -3,6 +3,7 @@
 language: english.yml         # Languages available by default: english.yml, german.yml, french.yml
 xp-formula: "100 + x^1.8"     # x is the current level of the player
 max-level: -1                 # Set to -1 to disable Max level
+default-level-colour: "f"     # Colour Code of default level colour
 enable-placeholder-api: true  # Available PAPI-Placeholders: %jlevel_level%, %jlevel_xp%, %jlevel_required%
 check-updates: true
 
@@ -10,6 +11,8 @@ rewards:
   monster-kill: 2
   achievement: 10
   player-kill: 5
+
+# --------------- Level Config ---------------
 
 level-rewards:
   1:
@@ -19,6 +22,7 @@ level-rewards:
     text:
       - "&3one Diamond"
       - "&e64 Dirt"
+    colour: "c"               # Level colour given at this level (c = Red), not required!
 
 # --------------------------------------------
 

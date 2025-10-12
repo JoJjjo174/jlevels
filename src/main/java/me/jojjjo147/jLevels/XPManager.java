@@ -9,20 +9,23 @@ import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
 import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class XPManager {
 
     private final JLevels plugin;
+    private HashMap<Integer, Character> levelColours;
 
     public XPManager(JLevels plugin) {
         this.plugin = plugin;
+        levelColours = getLevelColours();
     }
+
     public void addXP(Player p, int addXpAmount, String reason) {
 
         sendActionbar(p, addXpAmount, reason);
@@ -107,8 +110,11 @@ public class XPManager {
         rewardString = rewardString.stripTrailing();
         rewardString += "&r";
 
+        String colourCode = "&" + getLevelColour(level);
+
         text = text.replace("%level%", String.valueOf(level));
         text = text.replace("%rewards%", rewardString);
+        text = text.replace("%level_colour%", colourCode);
 
         return text;
     }
@@ -127,5 +133,59 @@ public class XPManager {
                 .setVariable("x", level);
 
         return (int)expression.evaluate();
+    }
+
+    private HashMap<Integer, Character> getLevelColours() {
+
+        ConfigurationSection levelSection = plugin.getConfig().getConfigurationSection("level-rewards");
+
+        if (levelSection == null) {
+            plugin.getLogger().warning("Couldn't find level section in config");
+            return null;
+        }
+
+        HashMap<Integer, Character> levelColours = new HashMap<>();
+
+        for (String key : levelSection.getKeys(false)) {
+
+            ConfigurationSection subSection = levelSection.getConfigurationSection(key);
+
+            if (subSection == null || !subSection.contains("colour")) {
+                continue;
+            }
+
+            levelColours.put(Integer.valueOf(key), subSection.getString("colour").charAt(0));
+
+        }
+
+        levelColours.put(0, plugin.getConfig().getString("default-level-colour").charAt(0));
+
+        return levelColours;
+
+    }
+
+    public char getLevelColour(int level) {
+
+        Set<Integer> sortedKeys = new TreeSet<>(levelColours.keySet());
+
+        int currentColourLevel = 0;
+        for (int key : sortedKeys) {
+
+            if (level >= key) {
+                currentColourLevel = key;
+            } else {
+                break;
+            }
+
+        }
+
+        return levelColours.get(currentColourLevel);
+
+    }
+
+    public void reload() {
+
+        levelColours = getLevelColours();
+
     }
 }

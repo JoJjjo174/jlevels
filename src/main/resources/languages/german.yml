@@ -1,6 +1,6 @@
 command-not-player: "Dieser Befehl kann nur von einem Spieler ausgeführt werden!"
-message-level: "&7Dein Level ist: &d%level%&7\nFortschritt zum nächsten Level: &d%xp%/%required_xp%" # Verfügbare Platzhalter: %player% %level% %xp% %required_xp%
-message-levelup: "&4&l-----&r &kx&r &bLevel Up! &r&kx&r &4&l-----&r\n&7Du bist jetzt Level &d%level%&7\nBelohnungen:\n%rewards%\n&4&l-----&r &kx&r &bLevel Up! &r&kx&r &4&l-----&r" # Verfügbare Platzhalter: %level% %rewards%
+message-level: "&7Dein Level ist: %level_colour%%level%&7\nFortschritt zum nächsten Level: &d%xp%/%required_xp%" # Verfügbare Platzhalter: %player% %level% %xp% %required_xp% %level_colour%
+message-levelup: "&4&l-----&r &kx&r &bLevel Up! &r&kx&r &4&l-----&r\n&7Du bist jetzt Level %level_colour%%level%&7\nBelohnungen:\n%rewards%\n&4&l-----&r &kx&r &bLevel Up! &r&kx&r &4&l-----&r" # Verfügbare Platzhalter: %level% %rewards% %level_colour%
 message-invalid-player: "&cUngültiger Spieler!"
 message-xp-number: "&cBitte gebe XP als eine Nummer an!"
 message-missing-arguments: "&cFehlende Argumente!"
