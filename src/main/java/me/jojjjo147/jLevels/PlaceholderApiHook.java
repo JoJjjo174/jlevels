@@ -1,6 +1,7 @@
 package me.jojjjo147.jLevels;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
+import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -43,12 +44,23 @@ public class PlaceholderApiHook extends PlaceholderExpansion {
         switch (params.toLowerCase()) {
             case "level":
 
-                if(data.has(new NamespacedKey(plugin, "level"), PersistentDataType.INTEGER)) {
-
-                    return String.valueOf(data.get(new NamespacedKey(plugin, "level"), PersistentDataType.INTEGER));
-
+                if(!data.has(new NamespacedKey(plugin, "level"), PersistentDataType.INTEGER)) {
+                    String colourCode = "§" + plugin.getConfig().getString("default-level-colour");
+                    return colourCode + "0";
                 }
-                return "0";
+
+                int level = data.get(new NamespacedKey(plugin, "level"), PersistentDataType.INTEGER);
+                String colourCode = "§" + plugin.getXpManager().getLevelColour(level);
+
+                return colourCode + level;
+
+            case "level_no_color":
+            case "level_no_colour":
+                if(!data.has(new NamespacedKey(plugin, "level"), PersistentDataType.INTEGER)) {
+                    return "0";
+                }
+
+                return String.valueOf(data.get(new NamespacedKey(plugin, "level"), PersistentDataType.INTEGER));
 
             case "xp":
                 if(data.has(new NamespacedKey(plugin, "xp"), PersistentDataType.INTEGER)) {
