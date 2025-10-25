@@ -27,6 +27,7 @@ public final class JLevels extends JavaPlugin {
     public void onEnable() {
 
         saveDefaultConfig();
+        ConfigUpdater.updateConfig(this);
 
         langConfig = new LanguageFile(this, getConfig().getString("language"));
 

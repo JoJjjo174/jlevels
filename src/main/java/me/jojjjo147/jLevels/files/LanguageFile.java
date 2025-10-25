@@ -19,7 +19,7 @@ public class LanguageFile {
     public LanguageFile(JLevels plugin, String language) {
 
         this.plugin = plugin;
-        this.name = language;
+        this.name = language + ".yml";
 
         setup();
 
@@ -27,7 +27,7 @@ public class LanguageFile {
 
     public void setup() {
 
-        File folder = new File(plugin.getDataFolder(), "languages");
+        File folder = new File(plugin.getDataFolder(), "locales");
         if (!folder.exists()) {
             folder.mkdirs();
         }
@@ -35,7 +35,7 @@ public class LanguageFile {
         file = new File(folder, name);
 
         if (!file.exists()) {
-            try (InputStream in = plugin.getResource("languages/" + name)) {
+            try (InputStream in = plugin.getResource("locales/" + name)) {
                 if (in != null) {
                     Files.copy(in, file.toPath());
 
