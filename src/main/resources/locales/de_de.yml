@@ -17,3 +17,5 @@ lore-xpbottle: "&7rechtsklicken um &b%xp%XP&7 zu bekommen"  # Verfügbare Platzh
 outdated-warning: "&6Es gibt eine neue JLevels Version. Du kannst sie auf &cmodrinth.com/plugin/jlevels&6 herunterladen!"
 message-reload-config: "&aKonfiguration wird neu geladen..."
 message-reload-config-done: "&afertig"
+message-level-set: "&a%player%'s level wurde auf %level% gesetzt" # Verfügbare Platzhalter: %player% %level%
+message-level-number: "&cBitte gebe den Level als eine Nummer an!"

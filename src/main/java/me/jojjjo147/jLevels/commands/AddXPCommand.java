@@ -12,11 +12,9 @@ import org.bukkit.entity.Player;
 public class AddXPCommand implements CommandExecutor {
 
     private final JLevels plugin;
-    private final XPManager xpmg;
 
-    public AddXPCommand(JLevels plugin, XPManager xpmg) {
+    public AddXPCommand(JLevels plugin) {
         this.plugin = plugin;
-        this.xpmg = xpmg;
     }
 
     @Override
@@ -46,23 +44,23 @@ public class AddXPCommand implements CommandExecutor {
 
                         }
 
-                        xpmg.addXP(target, xpAmount, xpReason);
+                        plugin.getXpManager().addXP(target, xpAmount, xpReason);
 
-                        commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getMessage("message-add-xp")));
+                        commandSender.sendMessage(plugin.getMessage("message-add-xp"));
 
                     } else {
-                        commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getMessage("message-invalid-player")));
+                        commandSender.sendMessage(plugin.getMessage("message-invalid-player"));
                     }
 
                 } catch (NumberFormatException e) {
-                    commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getMessage("message-xp-number")));
+                    commandSender.sendMessage(plugin.getMessage("message-xp-number"));
                 }
 
             } else {
-                commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getMessage("message-missing-arguments")));
+                commandSender.sendMessage(plugin.getMessage("message-missing-arguments"));
             }
         } else {
-            commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getMessage("command-not-player")));
+            commandSender.sendMessage(plugin.getMessage("command-not-player"));
         }
 
         return true;

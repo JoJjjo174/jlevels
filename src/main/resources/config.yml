@@ -1,6 +1,6 @@
 # ----------------- Settings -----------------
 
-language: en_us.yml         # Languages available by default: en_us.yml, de_de.yml, fr_fr.yml
+language: en_us               # Languages available by default: en_us.yml, de_de.yml, fr_fr.yml
 xp-formula: "100 + x^1.8"     # x is the current level of the player
 max-level: -1                 # Set to -1 to disable Max level
 default-level-colour: "f"     # Colour Code of default level colour

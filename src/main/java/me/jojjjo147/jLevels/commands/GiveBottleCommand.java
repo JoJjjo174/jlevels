@@ -37,9 +37,9 @@ public class GiveBottleCommand implements CommandExecutor {
                 try {
                     data.set(new NamespacedKey(plugin, "jxp"), PersistentDataType.INTEGER, Integer.valueOf(args[0]));
 
-                    meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', plugin.getMessage("name-xpbottle").replace("%xp%", args[0])));
+                    meta.setDisplayName(plugin.getMessage("name-xpbottle").replace("%xp%", args[0]));
                     meta.setLore(Arrays.asList(
-                            ChatColor.translateAlternateColorCodes('&', plugin.getMessage("lore-xpbottle").replace("%xp%", args[0]))
+                            plugin.getMessage("lore-xpbottle").replace("%xp%", args[0])
                     ));
 
                     item.setItemMeta(meta);
@@ -47,18 +47,18 @@ public class GiveBottleCommand implements CommandExecutor {
 
                     p.getInventory().addItem(item);
 
-                    commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getMessage("message-xpbottle-given")));
+                    commandSender.sendMessage(plugin.getMessage("message-xpbottle-given"));
 
                 } catch (NumberFormatException e) {
-                    commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getMessage("message-xp-number")));
+                    commandSender.sendMessage(plugin.getMessage("message-xp-number"));
                 }
 
             } else {
-                commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getMessage("message-missing-arguments")));
+                commandSender.sendMessage(plugin.getMessage("message-missing-arguments"));
             }
 
         } else {
-            commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getMessage("command-not-player")));
+            commandSender.sendMessage(plugin.getMessage("command-not-player"));
         }
 
         return true;

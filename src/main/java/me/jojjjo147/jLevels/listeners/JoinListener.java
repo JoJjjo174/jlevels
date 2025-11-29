@@ -39,7 +39,7 @@ public class JoinListener implements Listener {
         }
 
         if (outdated && p.hasPermission("jlevels.receive-outdated-warning")) {
-            p.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getMessage("outdated-warning")));
+            p.sendMessage(plugin.getMessage("outdated-warning"));
         }
 
     }

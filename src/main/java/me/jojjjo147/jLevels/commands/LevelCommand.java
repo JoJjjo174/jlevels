@@ -26,10 +26,10 @@ public class LevelCommand implements CommandExecutor {
             String message = plugin.getMessage("message-level");
             message = applyPlaceholders(p, message);
 
-            commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
+            commandSender.sendMessage(message);
 
         } else {
-            commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getMessage("command-not-player")));
+            commandSender.sendMessage(plugin.getMessage("command-not-player"));
         }
 
         return true;
@@ -43,7 +43,7 @@ public class LevelCommand implements CommandExecutor {
 
         int required_xp = plugin.getXpManager().getRequiredXP(level);
 
-        String colourCode = "&" + plugin.getXpManager().getLevelColour(level);
+        String colourCode = "§" + plugin.getXpManager().getLevelColour(level);
 
         text = text.replace("%player%", player.getDisplayName());
         text = text.replace("%level%", String.valueOf(level));

@@ -17,3 +17,5 @@ lore-xpbottle: "&7Clique-droit pour obtenir &b%xp%XP"  # Variables disponible: %
 outdated-warning: "&6Une nouvelle version de Jlevels est disponible ! Vous pouvez la télécharger à &cmodrinth.com/plugin/jlevels" # Automatic translation!
 message-reload-config: "&arechargement de la configuration..." # Automatic translation!
 message-reload-config-done: "&acomplet" # Automatic translation!
+message-level-set: "&aréglez le niveau de %player% à %level%" # Variables disponible: %player% %level% # Automatic translation!
+message-level-number: "&cVeuillez spécifier le niveau sous forme de nombre !" # Automatic translation!

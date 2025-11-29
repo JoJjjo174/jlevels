@@ -19,7 +19,12 @@ public class LanguageFile {
     public LanguageFile(JLevels plugin, String language) {
 
         this.plugin = plugin;
-        this.name = language + ".yml";
+
+        if (language.endsWith(".yml")) {
+            this.name = language;
+        } else {
+            this.name = language + ".yml";
+        }
 
         setup();
 

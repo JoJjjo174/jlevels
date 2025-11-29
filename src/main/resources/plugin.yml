@@ -1,5 +1,5 @@
 name: jLevels
-version: '0.4'
+version: '0.4.1'
 main: me.jojjjo147.jLevels.JLevels
 api-version: '1.21'
 softdepend: [PlaceholderAPI]
@@ -19,6 +19,10 @@ commands:
     usage: /<command>
     description: reloads the config
     permission: jlevels.reload-config
+  setlevel:
+    usage: /<command> <player> <level>
+    description: Set a player's level
+    permission: jlevels.set-level
 permissions:
   jlevels.level:
     description: run the /level command
@@ -31,4 +35,7 @@ permissions:
     default: op
   jlevels.reload-config:
     description: reload the config
+    default: op
+  jlevels.set-level:
+    description: set someone's level
     default: op

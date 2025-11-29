@@ -60,7 +60,7 @@ public class XPManager {
                     rewards = plugin.getConfig().getStringList("level-rewards." + level + ".text");
                 }
 
-                p.sendMessage(ChatColor.translateAlternateColorCodes('&', applyPlaceholders(level, rewards, plugin.getMessage("message-levelup"))));
+                p.sendMessage(applyPlaceholders(level, rewards, plugin.getMessage("message-levelup")));
 
                 ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
 
@@ -88,7 +88,7 @@ public class XPManager {
     }
 
     public void sendActionbar(Player p, int amount, String reason) {
-        p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.translateAlternateColorCodes('&', applyActionbarPlaceholders(amount, reason, plugin.getMessage("actionbar-gained-xp")))));
+        p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(applyActionbarPlaceholders(amount, reason, plugin.getMessage("actionbar-gained-xp"))));
     }
 
     public String applyActionbarPlaceholders(int xp, String reason, String text) {
@@ -104,16 +104,16 @@ public class XPManager {
         String rewardString = "";
 
         for (String reward : rewards) {
-            rewardString += "   &e-&r " + reward + "\n";
+            rewardString += "   §e-§r " + reward + "\n";
         }
 
         rewardString = rewardString.stripTrailing();
-        rewardString += "&r";
+        rewardString += "§r";
 
-        String colourCode = "&" + getLevelColour(level);
+        String colourCode = "§" + getLevelColour(level);
 
         text = text.replace("%level%", String.valueOf(level));
-        text = text.replace("%rewards%", rewardString);
+        text = text.replace("%rewards%", ChatColor.translateAlternateColorCodes('&', rewardString));
         text = text.replace("%level_colour%", colourCode);
 
         return text;
@@ -133,6 +133,18 @@ public class XPManager {
                 .setVariable("x", level);
 
         return (int)expression.evaluate();
+    }
+
+    public void setLevel(Player player, int level) {
+
+        PersistentDataContainer data = player.getPersistentDataContainer();
+
+        final NamespacedKey levelKey = new NamespacedKey(plugin, "level");
+        final NamespacedKey xpKey = new NamespacedKey(plugin, "xp");
+
+        data.set(levelKey, PersistentDataType.INTEGER, level);
+        data.set(xpKey, PersistentDataType.INTEGER, 0);
+
     }
 
     private HashMap<Integer, Character> getLevelColours() {

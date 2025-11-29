@@ -1,12 +1,10 @@
 package me.jojjjo147.jLevels;
 
-import me.jojjjo147.jLevels.commands.AddXPCommand;
-import me.jojjjo147.jLevels.commands.GiveBottleCommand;
-import me.jojjjo147.jLevels.commands.LevelCommand;
-import me.jojjjo147.jLevels.commands.ReloadConfigCommand;
+import me.jojjjo147.jLevels.commands.*;
 import me.jojjjo147.jLevels.files.LanguageFile;
 import me.jojjjo147.jLevels.listeners.*;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import org.bstats.bukkit.Metrics;
@@ -53,9 +51,10 @@ public final class JLevels extends JavaPlugin {
         }
 
         getCommand("level").setExecutor(new LevelCommand(this));
-        getCommand("addxp").setExecutor(new AddXPCommand(this, xpmg));
+        getCommand("addxp").setExecutor(new AddXPCommand(this));
         getCommand("givexpbottle").setExecutor(new GiveBottleCommand(this));
         getCommand("jreload").setExecutor(new ReloadConfigCommand(this));
+        getCommand("setlevel").setExecutor(new SetLevelCommand(this));
 
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null && getConfig().getBoolean("enable-placeholder-api")) {
             new PlaceholderApiHook(this).register();
@@ -109,7 +108,15 @@ public final class JLevels extends JavaPlugin {
     }
 
     public String getMessage(String key) {
-        return langConfig.get().getString(key);
+
+        String message = langConfig.get().getString(key);
+
+        if (message == null) {
+            getLogger().severe("Couldn't get message from lang file");
+            return "";
+        }
+
+        return ChatColor.translateAlternateColorCodes('&', message);
     }
 
     public void reloadAllConfigurations() {
