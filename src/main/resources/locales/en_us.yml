@@ -5,7 +5,7 @@ message-invalid-player: "&cInvalid player!"
 message-xp-number: "&cPlease specify xp as a number!"
 message-missing-arguments: "&cMissing arguments!"
 message-add-xp: "&asuccessfully added xp to player"
-message-xpbottle-given: "&aAddded XP Bottle(s) to your inventory"
+message-xpbottle-given: "&a%amount% xp bottles were given to %player%" # Available Placeholders: %player% %amount%
 actionbar-gained-xp: "&b&l+%xp%XP &7&o(%reason%)" # Available Placeholders: %xp% %reason%
 xpreason-moster-killed: "Monster Killed"
 xpreason-admin: "Given by Admin"
