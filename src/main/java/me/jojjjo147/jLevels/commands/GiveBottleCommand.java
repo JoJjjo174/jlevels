@@ -8,15 +8,19 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
+import java.util.List;
 
-public class GiveBottleCommand implements CommandExecutor {
+public class GiveBottleCommand implements CommandExecutor, TabExecutor {
 
     private final JLevels plugin;
 
@@ -69,6 +73,16 @@ public class GiveBottleCommand implements CommandExecutor {
 
         commandSender.sendMessage(applyPlaceholders(plugin.getMessage("message-xpbottle-given"), target, amountArgument));
         return true;
+    }
+
+    @Override
+    public @Nullable List<String> onTabComplete(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
+        return switch (args.length) {
+            case 1 -> null;
+            case 2 -> List.of("<xp>");
+            case 3 -> List.of("<amount>");
+            default -> List.of();
+        };
     }
 
     private String applyPlaceholders(String message, Player player, int amount) {
