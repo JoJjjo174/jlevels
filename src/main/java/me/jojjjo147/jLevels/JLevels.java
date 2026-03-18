@@ -5,9 +5,12 @@ import me.jojjjo147.jLevels.files.LanguageFile;
 import me.jojjjo147.jLevels.listeners.*;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import org.bstats.bukkit.Metrics;
+import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scheduler.BukkitTask;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -20,6 +23,7 @@ public final class JLevels extends JavaPlugin {
     private XPManager xpmg;
     private static boolean outdated = false;
     private LanguageFile langConfig;
+    private BukkitTask playtimeRunnable;
 
     @Override
     public void onEnable() {
@@ -50,6 +54,10 @@ public final class JLevels extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new PlayerDeathListener(this), this);
         }
 
+        if(getConfig().getInt("rewards.playtime") > 0) {
+            registerPlaytimeRunnable();
+        }
+
         getCommand("level").setExecutor(new LevelCommand(this));
         getCommand("addxp").setExecutor(new AddXPCommand(this));
         getCommand("givexpbottle").setExecutor(new GiveBottleCommand(this));
@@ -65,6 +73,19 @@ public final class JLevels extends JavaPlugin {
 
         getLogger().info("jLevels finished loading!");
 
+    }
+
+    private void registerPlaytimeRunnable() {
+        playtimeRunnable = new BukkitRunnable() {
+            @Override
+            public void run() {
+
+                for (Player player : Bukkit.getOnlinePlayers()) {
+                    xpmg.addXP(player, getConfig().getInt("rewards.playtime"), getMessage("xpreason-playtime"));
+                }
+
+            }
+        }.runTaskTimer(this, 0L, getConfig().getInt("playtime-reward-time") * 20L);
     }
 
     public boolean isOutdated(String modrinthID) {
@@ -126,6 +147,11 @@ public final class JLevels extends JavaPlugin {
 
         if (!getConfig().getString("language").equalsIgnoreCase(langConfig.getLanguage())) {
             langConfig = new LanguageFile(this, getConfig().getString("language"));
+        }
+
+        if (playtimeRunnable != null) {
+            playtimeRunnable.cancel();
+            registerPlaytimeRunnable();
         }
     }
 }

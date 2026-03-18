@@ -4,7 +4,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 public class ConfigUpdater {
 
-    final static private int newestVersion = 2;
+    final static private int newestVersion = 3;
 
     public static void updateConfig(JLevels plugin) {
         FileConfiguration config = plugin.getConfig();
@@ -30,6 +30,15 @@ public class ConfigUpdater {
                     config.set("config-version", 2);
                     plugin.saveConfig();
                     plugin.getLogger().info("Updated config from version 1 -> 2");
+                    break;
+
+                case 2:
+                    config.set("playtime-reward-time", 3600);
+                    config.set("rewards.playtime", 30);
+
+                    config.set("config-version", 3);
+                    plugin.saveConfig();
+                    plugin.getLogger().info("Updated config from version 2 -> 3");
                     break;
 
                 default:

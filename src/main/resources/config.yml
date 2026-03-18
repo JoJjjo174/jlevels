@@ -4,13 +4,15 @@ language: en_us               # Languages available by default: en_us.yml, de_de
 xp-formula: "100 + x^1.8"     # x is the current level of the player
 max-level: -1                 # Set to -1 to disable Max level
 default-level-colour: "f"     # Colour Code of default level colour
+playtime-reward-time: 3600    # Seconds between each playtime xp reward (3600 seconds = 1 hour)
 enable-placeholder-api: true  # Available PAPI-Placeholders: %jlevel_level%, %jlevel_xp%, %jlevel_required%
 check-updates: true
 
-rewards:
+rewards: #Set 0 to disable
   monster-kill: 2
   achievement: 10
   player-kill: 5
+  playtime: 30
 
 # --------------- Level Config ---------------
 
@@ -26,4 +28,4 @@ level-rewards:
 
 # --------------------------------------------
 
-config-version: 2 # DO NOT CHANGE
+config-version: 3 # DO NOT CHANGE
