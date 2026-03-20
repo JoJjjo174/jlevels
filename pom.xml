@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>me.jojjjo147</groupId>
-    <artifactId>jLevels</artifactId>
+    <groupId>at.jonathans</groupId>
+    <artifactId>jlevels</artifactId>
     <version>0.4.1</version>
     <packaging>jar</packaging>
 
@@ -37,6 +37,10 @@
                         <relocation>
                             <pattern>org.bstats</pattern>
                             <shadedPattern>me.jojjjo147.jlevels.bstats</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>dev.triumphteam.gui</pattern>
+                            <shadedPattern>at.jonathans.jlevels.gui</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>
@@ -96,6 +100,11 @@
             <artifactId>bstats-bukkit</artifactId>
             <version>3.0.2</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>dev.triumphteam</groupId>
+            <artifactId>triumph-gui</artifactId>
+            <version>3.1.13</version>
         </dependency>
     </dependencies>
 </project>

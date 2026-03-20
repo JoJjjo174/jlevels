@@ -1,6 +1,6 @@
 name: jLevels
 version: '${project.version}'
-main: me.jojjjo147.jLevels.JLevels
+main: at.jonathans.jlevels.JLevels
 api-version: '1.21'
 softdepend: [PlaceholderAPI]
 commands:

@@ -1,7 +1,6 @@
-package me.jojjjo147.jLevels;
+package at.jonathans.jlevels;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
-import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataContainer;

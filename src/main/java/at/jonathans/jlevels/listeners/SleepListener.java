@@ -1,6 +1,6 @@
-package me.jojjjo147.jLevels.listeners;
+package at.jonathans.jlevels.listeners;
 
-import me.jojjjo147.jLevels.JLevels;
+import at.jonathans.jlevels.JLevels;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerBedLeaveEvent;

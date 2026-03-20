@@ -1,8 +1,10 @@
-package me.jojjjo147.jLevels;
+package at.jonathans.jlevels;
 
-import me.jojjjo147.jLevels.commands.*;
-import me.jojjjo147.jLevels.files.LanguageFile;
-import me.jojjjo147.jLevels.listeners.*;
+import at.jonathans.jlevels.commands.*;
+import at.jonathans.jlevels.listeners.*;
+import at.jonathans.jlevels.commands.*;
+import at.jonathans.jlevels.files.LanguageFile;
+import at.jonathans.jlevels.listeners.*;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -92,7 +94,7 @@ public final class JLevels extends JavaPlugin {
         }.runTaskTimer(this, 0L, getConfig().getInt("playtime-reward-time") * 20L);
     }
 
-    public boolean isOutdated(String modrinthID) {
+    private boolean isOutdated(String modrinthID) {
         try {
             URL url = new URL("https://api.modrinth.com/v2/project/" + modrinthID + "/version");
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -144,7 +146,7 @@ public final class JLevels extends JavaPlugin {
         return ChatColor.translateAlternateColorCodes('&', message);
     }
 
-    public void reloadAllConfigurations() {
+    public void reload() {
         reloadConfig();
         xpmg.reload();
         langConfig.reload();

@@ -1,7 +1,6 @@
-package me.jojjjo147.jLevels.commands;
+package at.jonathans.jlevels.commands;
 
-import me.jojjjo147.jLevels.JLevels;
-import org.bukkit.ChatColor;
+import at.jonathans.jlevels.JLevels;
 import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

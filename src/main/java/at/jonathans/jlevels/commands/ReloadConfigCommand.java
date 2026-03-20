@@ -1,7 +1,6 @@
-package me.jojjjo147.jLevels.commands;
+package at.jonathans.jlevels.commands;
 
-import me.jojjjo147.jLevels.JLevels;
-import org.bukkit.ChatColor;
+import at.jonathans.jlevels.JLevels;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -18,7 +17,7 @@ public class ReloadConfigCommand implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
 
         commandSender.sendMessage(plugin.getMessage("message-reload-config"));
-        plugin.reloadAllConfigurations();
+        plugin.reload();
         commandSender.sendMessage(plugin.getMessage("message-reload-config-done"));
 
         return true;

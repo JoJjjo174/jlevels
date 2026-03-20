@@ -1,8 +1,6 @@
-package me.jojjjo147.jLevels.listeners;
+package at.jonathans.jlevels.listeners;
 
-import me.jojjjo147.jLevels.XPManager;
-
-import me.jojjjo147.jLevels.JLevels;
+import at.jonathans.jlevels.JLevels;
 import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

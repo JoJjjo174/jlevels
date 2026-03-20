@@ -1,7 +1,6 @@
-package me.jojjjo147.jLevels.listeners;
+package at.jonathans.jlevels.listeners;
 
-import me.jojjjo147.jLevels.JLevels;
-import org.bukkit.ChatColor;
+import at.jonathans.jlevels.JLevels;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

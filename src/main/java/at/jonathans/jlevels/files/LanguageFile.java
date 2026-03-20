@@ -1,6 +1,6 @@
-package me.jojjjo147.jLevels.files;
+package at.jonathans.jlevels.files;
 
-import me.jojjjo147.jLevels.JLevels;
+import at.jonathans.jlevels.JLevels;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 

@@ -1,6 +1,6 @@
-package me.jojjjo147.jLevels.commands;
+package at.jonathans.jlevels.commands;
 
-import me.jojjjo147.jLevels.JLevels;
+import at.jonathans.jlevels.JLevels;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

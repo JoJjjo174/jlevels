@@ -1,4 +1,4 @@
-package me.jojjjo147.jLevels;
+package at.jonathans.jlevels;
 
 import org.bukkit.configuration.file.FileConfiguration;
 

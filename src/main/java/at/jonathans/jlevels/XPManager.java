@@ -1,4 +1,4 @@
-package me.jojjjo147.jLevels;
+package at.jonathans.jlevels;
 
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -87,11 +87,11 @@ public class XPManager {
 
     }
 
-    public void sendActionbar(Player p, int amount, String reason) {
+    private void sendActionbar(Player p, int amount, String reason) {
         p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(applyActionbarPlaceholders(amount, reason, plugin.getMessage("actionbar-gained-xp"))));
     }
 
-    public String applyActionbarPlaceholders(int xp, String reason, String text) {
+    private String applyActionbarPlaceholders(int xp, String reason, String text) {
 
         text = text.replace("%xp%", String.valueOf(xp));
         text = text.replace("%reason%", reason);
@@ -99,7 +99,7 @@ public class XPManager {
         return text;
     }
 
-    public String applyPlaceholders(int level, List<String> rewards, String text) {
+    private String applyPlaceholders(int level, List<String> rewards, String text) {
 
         String rewardString = "";
 
@@ -124,7 +124,7 @@ public class XPManager {
 
         if (xpFormula == null) {
             plugin.getLogger().warning("Couldn't fetch XP formula");
-            return 0;
+            return 100;
         }
 
         Expression expression = new ExpressionBuilder(xpFormula)
