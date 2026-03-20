@@ -58,6 +58,10 @@ public final class JLevels extends JavaPlugin {
             registerPlaytimeRunnable();
         }
 
+        if (getConfig().getInt("rewards.sleep") > 0) {
+            getServer().getPluginManager().registerEvents(new SleepListener(this), this);
+        }
+
         getCommand("level").setExecutor(new LevelCommand(this));
         getCommand("addxp").setExecutor(new AddXPCommand(this));
         getCommand("givexpbottle").setExecutor(new GiveBottleCommand(this));

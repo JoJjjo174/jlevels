@@ -13,6 +13,7 @@ rewards: #Set 0 to disable
   achievement: 10
   player-kill: 5
   playtime: 30
+  sleep: 5
 
 # --------------- Level Config ---------------
 
