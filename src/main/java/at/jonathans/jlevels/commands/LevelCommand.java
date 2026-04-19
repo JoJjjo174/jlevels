@@ -1,13 +1,23 @@
 package at.jonathans.jlevels.commands;
 
 import at.jonathans.jlevels.JLevels;
+import at.jonathans.jlevels.JlevelsPlayer;
+import at.jonathans.jlevels.guis.LevelGui;
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
+
+import java.awt.*;
+import java.awt.print.Paper;
 
 public class LevelCommand implements CommandExecutor {
 
@@ -20,16 +30,16 @@ public class LevelCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
 
-        if (commandSender instanceof Player p) {
-
-            String message = plugin.getMessage("message-level");
-            message = applyPlaceholders(p, message);
-
-            commandSender.sendMessage(message);
-
-        } else {
+        if (!(commandSender instanceof Player)) {
             commandSender.sendMessage(plugin.getMessage("command-not-player"));
+            return true;
         }
+
+        Player player = (Player) commandSender;
+        JlevelsPlayer jPlayer = new JlevelsPlayer(plugin, player);
+
+        LevelGui levelGui = new LevelGui(jPlayer);
+        player.openInventory(levelGui.getInventory());
 
         return true;
     }

@@ -5,6 +5,7 @@ import at.jonathans.jlevels.listeners.*;
 import at.jonathans.jlevels.commands.*;
 import at.jonathans.jlevels.files.LanguageFile;
 import at.jonathans.jlevels.listeners.*;
+import org.bstats.charts.SimplePie;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -22,6 +23,9 @@ import java.util.Scanner;
 
 public final class JLevels extends JavaPlugin {
 
+    private static final String MODRINTH_ID = "ZucF3Myf";
+    private static final int BSTATS_ID = 23375;
+
     private XPManager xpmg;
     private static boolean outdated = false;
     private LanguageFile langConfig;
@@ -38,11 +42,13 @@ public final class JLevels extends JavaPlugin {
         xpmg = new XPManager(this);
 
         if (getConfig().getBoolean("check-updates")) {
-            outdated = isOutdated("ZucF3Myf");
+            outdated = isOutdated();
         }
 
         getServer().getPluginManager().registerEvents(new JoinListener(this, outdated), this);
         getServer().getPluginManager().registerEvents(new XpBottleListener(this), this);
+        getServer().getPluginManager().registerEvents(new GuiClickListener(), this);
+        getServer().getPluginManager().registerEvents(new GuiDragListener(), this);
 
         if (getConfig().getInt("rewards.monster-kill") > 0) {
             getServer().getPluginManager().registerEvents(new MobKillListener(this), this);
@@ -74,14 +80,25 @@ public final class JLevels extends JavaPlugin {
             new PlaceholderApiHook(this).register();
         }
 
-        int pluginId = 23375;
-        Metrics metrics = new Metrics(this, pluginId);
+        Metrics metrics = new Metrics(this, BSTATS_ID);
+        addMetrics(metrics);
 
         getLogger().info("jLevels finished loading!");
 
     }
 
+    private void addMetrics(Metrics metrics) {
+
+        metrics.addCustomChart(new SimplePie("language", () -> {
+            return langConfig.getLanguage();
+        }));
+
+    }
+
     private void registerPlaytimeRunnable() {
+        long period = getConfig().getInt("playtime-reward-time") * 20L;
+        long delay = period / 2;
+
         playtimeRunnable = new BukkitRunnable() {
             @Override
             public void run() {
@@ -91,12 +108,12 @@ public final class JLevels extends JavaPlugin {
                 }
 
             }
-        }.runTaskTimer(this, 0L, getConfig().getInt("playtime-reward-time") * 20L);
+        }.runTaskTimer(this, delay, period);
     }
 
-    private boolean isOutdated(String modrinthID) {
+    private boolean isOutdated() {
         try {
-            URL url = new URL("https://api.modrinth.com/v2/project/" + modrinthID + "/version");
+            URL url = new URL("https://api.modrinth.com/v2/project/" + MODRINTH_ID + "/version");
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET");
             int status = con.getResponseCode();
