@@ -20,9 +20,11 @@ public class XPManager {
 
     private final JLevels plugin;
     private HashMap<Integer, Character> levelColours;
+    private int maxLevel;
 
     public XPManager() {
         this.plugin = JLevels.getInstance();
+        maxLevel = plugin.getConfig().getInt("max-level");
         levelColours = getLevelColours();
     }
 
@@ -41,10 +43,9 @@ public class XPManager {
         int required_xp = getRequiredXP(level);
         xp += addXpAmount;
 
-        int maxLevel = plugin.getConfig().getInt("max-level");
         boolean reachedMaxLevel = false;
 
-        if (maxLevel != -1) {
+        if (maxLevelSet()) {
             reachedMaxLevel = level >= maxLevel;
         }
 
@@ -54,7 +55,7 @@ public class XPManager {
                 level++;
                 xp -= required_xp;
 
-                List<String> rewards = Arrays.asList("&7No rewards");
+                List<String> rewards = List.of("&7No rewards");
 
                 if (plugin.getConfig().contains("level-rewards." + level)) {
                     rewards = plugin.getConfig().getStringList("level-rewards." + level + ".text");
@@ -195,9 +196,18 @@ public class XPManager {
 
     }
 
+    public int getMaxLevel() {
+        return maxLevel;
+    }
+
+    public boolean maxLevelSet() {
+        return maxLevel != -1;
+    }
+
     public void reload() {
 
         levelColours = getLevelColours();
+        maxLevel = plugin.getConfig().getInt("max-level");
 
     }
 }

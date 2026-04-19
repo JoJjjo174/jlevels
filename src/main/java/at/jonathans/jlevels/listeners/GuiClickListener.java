@@ -19,13 +19,13 @@ public class GuiClickListener implements Listener {
             if (event.getRawSlot() < guiSize || event.getClick().isShiftClick() || event.getAction() == InventoryAction.COLLECT_TO_CURSOR) {
                 event.setCancelled(true);
 
-                if (event.getRawSlot() == 36) {
+                if (event.getRawSlot() == 36 && event.getCurrentItem() != null) {
                     event.getWhoClicked().playSound(
                             Sound.sound(Key.key("ui.button.click"), Sound.Source.UI, 1f, 1f)
                     );
                     holder.scrollLeft();
 
-                } else if (event.getRawSlot() == 44) {
+                } else if (event.getRawSlot() == 44 && event.getCurrentItem() != null) {
                     event.getWhoClicked().playSound(
                             Sound.sound(Key.key("ui.button.click"), Sound.Source.UI, 1f, 1f)
                     );
