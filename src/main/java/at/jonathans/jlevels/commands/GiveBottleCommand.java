@@ -23,8 +23,8 @@ public class GiveBottleCommand implements CommandExecutor, TabExecutor {
 
     private final JLevels plugin;
 
-    public GiveBottleCommand(JLevels plugin) {
-        this.plugin = plugin;
+    public GiveBottleCommand() {
+        this.plugin = JLevels.getInstance();
     }
 
     @Override

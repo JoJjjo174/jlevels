@@ -10,8 +10,8 @@ import org.bukkit.event.player.PlayerAdvancementDoneEvent;
 public class AchievementListener implements Listener {
 
     private final JLevels plugin;
-    public AchievementListener(JLevels plugin) {
-        this.plugin = plugin;
+    public AchievementListener() {
+        this.plugin = JLevels.getInstance();
     }
     @EventHandler
     public void onAchievement(PlayerAdvancementDoneEvent e) {

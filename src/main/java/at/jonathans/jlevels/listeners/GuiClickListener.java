@@ -1,5 +1,6 @@
 package at.jonathans.jlevels.listeners;
 
+import at.jonathans.jlevels.JLevels;
 import at.jonathans.jlevels.guis.LevelGui;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;

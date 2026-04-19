@@ -9,8 +9,8 @@ import org.jetbrains.annotations.NotNull;
 public class ReloadConfigCommand implements CommandExecutor {
 
     private final JLevels plugin;
-    public ReloadConfigCommand(JLevels plugin) {
-        this.plugin = plugin;
+    public ReloadConfigCommand() {
+        this.plugin = JLevels.getInstance();
     }
 
     @Override

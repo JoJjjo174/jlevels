@@ -16,8 +16,8 @@ public class SetLevelCommand implements CommandExecutor, TabExecutor {
 
     private final JLevels plugin;
 
-    public SetLevelCommand(JLevels plugin) {
-        this.plugin = plugin;
+    public SetLevelCommand() {
+        this.plugin = JLevels.getInstance();
     }
 
     @Override

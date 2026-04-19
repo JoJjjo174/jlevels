@@ -21,8 +21,8 @@ public class XPManager {
     private final JLevels plugin;
     private HashMap<Integer, Character> levelColours;
 
-    public XPManager(JLevels plugin) {
-        this.plugin = plugin;
+    public XPManager() {
+        this.plugin = JLevels.getInstance();
         levelColours = getLevelColours();
     }
 

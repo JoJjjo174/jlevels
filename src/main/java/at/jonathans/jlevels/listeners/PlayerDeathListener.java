@@ -10,8 +10,8 @@ public class PlayerDeathListener implements Listener {
 
     private final JLevels plugin;
 
-    public PlayerDeathListener(JLevels plugin) {
-        this.plugin = plugin;
+    public PlayerDeathListener() {
+        this.plugin = JLevels.getInstance();
     }
 
     @EventHandler

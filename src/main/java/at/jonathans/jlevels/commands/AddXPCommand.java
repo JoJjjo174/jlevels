@@ -16,8 +16,8 @@ public class AddXPCommand implements CommandExecutor, TabExecutor {
 
     private final JLevels plugin;
 
-    public AddXPCommand(JLevels plugin) {
-        this.plugin = plugin;
+    public AddXPCommand() {
+        this.plugin = JLevels.getInstance();
     }
 
     @Override

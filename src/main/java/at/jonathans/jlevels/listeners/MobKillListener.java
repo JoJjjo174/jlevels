@@ -11,8 +11,8 @@ public class MobKillListener implements Listener {
 
     private final JLevels plugin;
 
-    public MobKillListener(JLevels plugin) {
-        this.plugin = plugin;
+    public MobKillListener() {
+        this.plugin = JLevels.getInstance();
     }
 
     @EventHandler

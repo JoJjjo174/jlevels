@@ -14,8 +14,8 @@ public class JoinListener implements Listener {
     private final JLevels plugin;
     private final boolean outdated;
 
-    public JoinListener(JLevels plugin, boolean outdated) {
-        this.plugin = plugin;
+    public JoinListener(boolean outdated) {
+        this.plugin = JLevels.getInstance();
         this.outdated = outdated;
     }
 

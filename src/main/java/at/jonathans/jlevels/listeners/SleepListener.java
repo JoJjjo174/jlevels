@@ -9,8 +9,8 @@ public class SleepListener implements Listener {
 
     private final JLevels plugin;
 
-    public SleepListener(JLevels plugin) {
-        this.plugin = plugin;
+    public SleepListener() {
+        this.plugin = JLevels.getInstance();
     }
 
     @EventHandler

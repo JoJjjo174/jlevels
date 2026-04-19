@@ -13,8 +13,8 @@ public class JlevelsPlayer {
     private final NamespacedKey levelNameSpacedkey;
     private final NamespacedKey xpNameSpacedKey;
 
-    public JlevelsPlayer(JLevels plugin, Player player) {
-        this.plugin = plugin;
+    public JlevelsPlayer(Player player) {
+        this.plugin = JLevels.getInstance();
         this.player = player;
         data = player.getPersistentDataContainer();
         levelNameSpacedkey = new NamespacedKey(plugin, "level");

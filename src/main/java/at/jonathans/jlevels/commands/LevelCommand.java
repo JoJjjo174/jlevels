@@ -23,8 +23,8 @@ public class LevelCommand implements CommandExecutor {
 
     private final JLevels plugin;
 
-    public LevelCommand(JLevels plugin) {
-        this.plugin = plugin;
+    public LevelCommand() {
+        this.plugin = JLevels.getInstance();
     }
 
     @Override
@@ -36,7 +36,7 @@ public class LevelCommand implements CommandExecutor {
         }
 
         Player player = (Player) commandSender;
-        JlevelsPlayer jPlayer = new JlevelsPlayer(plugin, player);
+        JlevelsPlayer jPlayer = new JlevelsPlayer(player);
 
         LevelGui levelGui = new LevelGui(jPlayer);
         player.openInventory(levelGui.getInventory());

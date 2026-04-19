@@ -16,9 +16,9 @@ public class LanguageFile {
     private  File file;
     private  FileConfiguration languageFile;
 
-    public LanguageFile(JLevels plugin, String language) {
+    public LanguageFile(String language) {
 
-        this.plugin = plugin;
+        this.plugin = JLevels.getInstance();
 
         if (language.endsWith(".yml")) {
             this.name = language;

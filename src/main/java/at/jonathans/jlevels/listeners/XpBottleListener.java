@@ -17,8 +17,9 @@ public class XpBottleListener implements Listener {
 
     private final JLevels plugin;
 
-    public XpBottleListener(JLevels plugin) {
-        this.plugin = plugin;}
+    public XpBottleListener() {
+        this.plugin = JLevels.getInstance();
+    }
 
     @EventHandler
     public void onXpBottleThrow(PlayerInteractEvent e) {

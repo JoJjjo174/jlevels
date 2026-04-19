@@ -12,8 +12,8 @@ public class PlaceholderApiHook extends PlaceholderExpansion {
 
     private final JLevels plugin;
 
-    public PlaceholderApiHook(JLevels plugin) {
-        this.plugin = plugin;
+    public PlaceholderApiHook() {
+        this.plugin = JLevels.getInstance();
     }
 
     @Override

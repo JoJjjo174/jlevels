@@ -23,6 +23,8 @@ import java.util.Scanner;
 
 public final class JLevels extends JavaPlugin {
 
+    private static JLevels instance;
+
     private static final String MODRINTH_ID = "ZucF3Myf";
     private static final int BSTATS_ID = 23375;
 
@@ -34,32 +36,34 @@ public final class JLevels extends JavaPlugin {
     @Override
     public void onEnable() {
 
+        instance = this;
+
         saveDefaultConfig();
         ConfigUpdater.updateConfig(this);
 
-        langConfig = new LanguageFile(this, getConfig().getString("language"));
+        langConfig = new LanguageFile(getConfig().getString("language"));
 
-        xpmg = new XPManager(this);
+        xpmg = new XPManager();
 
         if (getConfig().getBoolean("check-updates")) {
             outdated = isOutdated();
         }
 
-        getServer().getPluginManager().registerEvents(new JoinListener(this, outdated), this);
-        getServer().getPluginManager().registerEvents(new XpBottleListener(this), this);
+        getServer().getPluginManager().registerEvents(new JoinListener(outdated), this);
+        getServer().getPluginManager().registerEvents(new XpBottleListener(), this);
         getServer().getPluginManager().registerEvents(new GuiClickListener(), this);
         getServer().getPluginManager().registerEvents(new GuiDragListener(), this);
 
         if (getConfig().getInt("rewards.monster-kill") > 0) {
-            getServer().getPluginManager().registerEvents(new MobKillListener(this), this);
+            getServer().getPluginManager().registerEvents(new MobKillListener(), this);
         }
 
         if (getConfig().getInt("rewards.achievement") > 0) {
-            getServer().getPluginManager().registerEvents(new AchievementListener(this), this);
+            getServer().getPluginManager().registerEvents(new AchievementListener(), this);
         }
 
         if (getConfig().getInt("rewards.player-kill") > 0) {
-            getServer().getPluginManager().registerEvents(new PlayerDeathListener(this), this);
+            getServer().getPluginManager().registerEvents(new PlayerDeathListener(), this);
         }
 
         if(getConfig().getInt("rewards.playtime") > 0) {
@@ -67,17 +71,17 @@ public final class JLevels extends JavaPlugin {
         }
 
         if (getConfig().getInt("rewards.sleep") > 0) {
-            getServer().getPluginManager().registerEvents(new SleepListener(this), this);
+            getServer().getPluginManager().registerEvents(new SleepListener(), this);
         }
 
-        getCommand("level").setExecutor(new LevelCommand(this));
-        getCommand("addxp").setExecutor(new AddXPCommand(this));
-        getCommand("givexpbottle").setExecutor(new GiveBottleCommand(this));
-        getCommand("jreload").setExecutor(new ReloadConfigCommand(this));
-        getCommand("setlevel").setExecutor(new SetLevelCommand(this));
+        getCommand("level").setExecutor(new LevelCommand());
+        getCommand("addxp").setExecutor(new AddXPCommand());
+        getCommand("givexpbottle").setExecutor(new GiveBottleCommand());
+        getCommand("jreload").setExecutor(new ReloadConfigCommand());
+        getCommand("setlevel").setExecutor(new SetLevelCommand());
 
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null && getConfig().getBoolean("enable-placeholder-api")) {
-            new PlaceholderApiHook(this).register();
+            new PlaceholderApiHook().register();
         }
 
         Metrics metrics = new Metrics(this, BSTATS_ID);
@@ -169,12 +173,16 @@ public final class JLevels extends JavaPlugin {
         langConfig.reload();
 
         if (!getConfig().getString("language").equalsIgnoreCase(langConfig.getLanguage())) {
-            langConfig = new LanguageFile(this, getConfig().getString("language"));
+            langConfig = new LanguageFile(getConfig().getString("language"));
         }
 
         if (playtimeRunnable != null) {
             playtimeRunnable.cancel();
             registerPlaytimeRunnable();
         }
+    }
+
+    public static JLevels getInstance() {
+        return instance;
     }
 }
